@@ -1,0 +1,119 @@
+# ==============================================================================
+# MediScan AI - Root .gitignore
+# ==============================================================================
+
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor & IDE Files
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+
+# Environment & Secret Files (Keep .env.example tracked)
+.env
+.env.*
+!.env.example
+!**/.env.example
+*.env.local
+
+# Python Virtual Environments
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Python Cache & Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+
+# Node.js & Frontend Dependencies
+node_modules/
+.npm/
+.yarn/
+.pnpm-store/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Frontend Build Outputs
+frontend/dist/
+frontend/dist-ssr/
+*.tsbuildinfo
+
+# Medical Datasets, Model Weights & Annotations (Module boundary protection)
+data/
+datasets/
+models/
+weights/
+*.h5
+*.hdf5
+*.pt
+*.pth
+*.onnx
+*.tflite
+*.safetensors
+*.ckpt
+*.dcm
+*.dicom
+*.nii
+*.nii.gz
+
+# Uploaded Images & Generated Temporary Reports
+uploads/
+temp/
+tmp/
+reports/
+generated/
+*.pdf
+backend/uploads/
+backend/temp/
+backend/reports/
