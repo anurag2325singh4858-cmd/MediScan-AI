@@ -21,7 +21,7 @@ services:
       - key: ENVIRONMENT
         value: production
       - key: ALLOWED_ORIGINS
-        value: "https://mediscan-ai-frontend.onrender.com"
+        value: "https://mediscan-ai-frontend-cfnl.onrender.com,https://mediscan-ai-frontend.onrender.com"
 
   # ----------------------------------------------------------------------------
   # 2. Frontend Static Site (React + Vite SPA)
@@ -39,4 +39,4 @@ services:
         destination: /index.html
     envVars:
       - key: VITE_API_URL
-        value: "https://mediscan-ai-backend.onrender.com"
+        value: "https://mediscan-ai-backend-rxdn.onrender.com"
