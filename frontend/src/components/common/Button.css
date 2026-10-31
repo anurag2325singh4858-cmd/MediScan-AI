@@ -1,0 +1,224 @@
+/**
+ * MediScan AI — Button Component Styles
+ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-tight);
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+  transition: 
+    background-color var(--transition-duration-fast) var(--transition-timing-standard),
+    border-color var(--transition-duration-fast) var(--transition-timing-standard),
+    color var(--transition-duration-fast) var(--transition-timing-standard),
+    box-shadow var(--transition-duration-fast) var(--transition-timing-standard),
+    opacity var(--transition-duration-fast) var(--transition-timing-standard);
+}
+
+/* ==========================================================================
+   Button Sizes
+   ========================================================================== */
+
+.btn--sm {
+  font-size: var(--font-size-xs);
+  padding: var(--space-1) var(--space-3);
+  min-height: 32px;
+}
+
+.btn--md {
+  font-size: var(--font-size-sm);
+  padding: var(--space-2) var(--space-4);
+  min-height: 40px;
+}
+
+.btn--lg {
+  font-size: var(--font-size-base);
+  padding: var(--space-3) var(--space-6);
+  min-height: 48px;
+}
+
+/* ==========================================================================
+   Button Variants: Default / Neutral
+   ========================================================================== */
+
+/* Primary */
+.btn--primary.btn--default {
+  background-color: var(--color-text-primary);
+  color: var(--color-text-inverse);
+  border-color: var(--color-text-primary);
+}
+
+.btn--primary.btn--default:hover:not(:disabled) {
+  background-color: #1e293b;
+  border-color: #1e293b;
+}
+
+/* Secondary */
+.btn--secondary.btn--default {
+  background-color: var(--color-bg-subtle);
+  color: var(--color-text-primary);
+  border-color: var(--color-border-light);
+}
+
+.btn--secondary.btn--default:hover:not(:disabled) {
+  background-color: var(--color-bg-muted);
+  border-color: var(--color-border-medium);
+}
+
+/* Ghost */
+.btn--ghost.btn--default {
+  background-color: transparent;
+  color: var(--color-text-secondary);
+  border-color: transparent;
+}
+
+.btn--ghost.btn--default:hover:not(:disabled) {
+  background-color: var(--color-bg-subtle);
+  color: var(--color-text-primary);
+}
+
+/* ==========================================================================
+   Button Variants: Tuberculosis (TB) Theme Accent
+   ========================================================================== */
+
+/* TB Primary */
+.btn--primary.btn--tb {
+  background-color: var(--color-tb-primary);
+  color: var(--color-text-inverse);
+  border-color: var(--color-tb-primary);
+}
+
+.btn--primary.btn--tb:hover:not(:disabled) {
+  background-color: var(--color-tb-darker);
+  border-color: var(--color-tb-darker);
+}
+
+/* TB Secondary */
+.btn--secondary.btn--tb {
+  background-color: var(--color-tb-tint);
+  color: var(--color-tb-darker);
+  border-color: var(--color-tb-border);
+}
+
+.btn--secondary.btn--tb:hover:not(:disabled) {
+  background-color: var(--color-tb-subtle);
+  border-color: var(--color-tb-primary);
+}
+
+/* TB Ghost */
+.btn--ghost.btn--tb {
+  background-color: transparent;
+  color: var(--color-tb-primary);
+  border-color: transparent;
+}
+
+.btn--ghost.btn--tb:hover:not(:disabled) {
+  background-color: var(--color-tb-tint);
+  color: var(--color-tb-darker);
+}
+
+/* ==========================================================================
+   Button Variants: Diabetic Retinopathy (DR) Theme Accent
+   ========================================================================== */
+
+/* DR Primary */
+.btn--primary.btn--dr {
+  background-color: var(--color-dr-primary);
+  color: var(--color-text-inverse);
+  border-color: var(--color-dr-primary);
+}
+
+.btn--primary.btn--dr:hover:not(:disabled) {
+  background-color: var(--color-dr-darker);
+  border-color: var(--color-dr-darker);
+}
+
+/* DR Secondary */
+.btn--secondary.btn--dr {
+  background-color: var(--color-dr-tint);
+  color: var(--color-dr-darker);
+  border-color: var(--color-dr-border);
+}
+
+.btn--secondary.btn--dr:hover:not(:disabled) {
+  background-color: var(--color-dr-subtle);
+  border-color: var(--color-dr-primary);
+}
+
+/* DR Ghost */
+.btn--ghost.btn--dr {
+  background-color: transparent;
+  color: var(--color-dr-primary);
+  border-color: transparent;
+}
+
+.btn--ghost.btn--dr:hover:not(:disabled) {
+  background-color: var(--color-dr-tint);
+  color: var(--color-dr-darker);
+}
+
+/* ==========================================================================
+   States: Focus, Disabled, Loading
+   ========================================================================== */
+
+.btn:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.btn--tb:focus-visible {
+  outline-color: var(--color-tb-primary);
+}
+
+.btn--dr:focus-visible {
+  outline-color: var(--color-dr-primary);
+}
+
+.btn:disabled,
+.btn--disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.btn--loading {
+  cursor: wait;
+}
+
+/* Accessible CSS Spinner */
+.btn__spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: var(--radius-full);
+  animation: btn-spin 0.6s linear infinite;
+}
+
+@keyframes btn-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.btn__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Full Width Utility */
+.btn--full-width {
+  width: 100%;
+}

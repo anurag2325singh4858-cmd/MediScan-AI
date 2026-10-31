@@ -1,0 +1,703 @@
+/**
+ * MediScan AI — Tuberculosis Processing Page Styles
+ * Matches visual authority: centered title, CXR frame with laser scan, vertical stepper
+ */
+
+.tb-proc-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ==========================================================================
+   Background Decorative Elements (Pulmonary Line-Art in TB Blue)
+   ========================================================================== */
+
+.tb-proc-bg-decor {
+  position: absolute;
+  top: 10%;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  width: clamp(280px, 32vw, 440px);
+  height: auto;
+  opacity: 0.1;
+}
+
+.tb-proc-bg-decor--left {
+  left: -40px;
+}
+
+.tb-proc-bg-decor--right {
+  right: -40px;
+}
+
+.tb-proc-bg-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ==========================================================================
+   Main Content Area
+   ========================================================================== */
+
+.tb-proc-content {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  padding: clamp(2rem, 3.5vw, 3rem) 0 clamp(3.5rem, 5vw, 5rem);
+  animation: procFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.tb-proc-container {
+  max-width: 1024px;
+}
+
+/* ==========================================================================
+   Heading Group (Centered Title & Workflow Capsule)
+   ========================================================================== */
+
+.tb-proc-heading-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: clamp(2rem, 4vw, 3.25rem);
+}
+
+.tb-proc-title {
+  font-family: var(--font-sans);
+  font-size: clamp(2rem, 3.8vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  color: #0d1b3e; /* Dark navy */
+  margin: 0 0 1rem 0;
+  line-height: 1.15;
+  -webkit-font-smoothing: antialiased;
+}
+
+.tb-proc-workflow-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.95rem 0.4rem 0.55rem;
+  background-color: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: var(--radius-full);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+}
+
+.tb-proc-workflow-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+}
+
+.tb-proc-workflow-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.tb-proc-workflow-text {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 650;
+  color: #0d1b3e;
+}
+
+/* ==========================================================================
+   Two-Column Grid Layout (Preview on Left, Stepper on Right)
+   ========================================================================== */
+
+.tb-proc-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: clamp(2rem, 4vw, 3.5rem);
+  align-items: center;
+  max-width: 940px;
+  margin: 0 auto clamp(2.5rem, 4.5vw, 3.5rem);
+}
+
+/* ==========================================================================
+   Left Column: Image Preview Card & Scanner Bar
+   ========================================================================== */
+
+.tb-proc-card--preview {
+  background-color: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  border-radius: 28px;
+  box-shadow: 0 12px 35px -6px rgba(15, 23, 42, 0.06);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.tb-proc-frame {
+  width: 100%;
+  position: relative;
+}
+
+.tb-proc-img-wrapper {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: #0c1a32;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.tb-proc-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  filter: contrast(1.05) brightness(0.98);
+}
+
+.tb-proc-orientation-marker {
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  font-family: var(--font-sans);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.85);
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: 0.05em;
+  z-index: 2;
+}
+
+/* Laser Scanning Line Animation */
+.tb-proc-scanner-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(56, 189, 248, 0.8) 25%,
+    #0066ff 50%,
+    rgba(56, 189, 248, 0.8) 75%,
+    transparent 100%
+  );
+  box-shadow: 0 0 14px 2px rgba(2, 132, 199, 0.8),
+              0 0 24px 6px rgba(0, 102, 255, 0.35);
+  animation: laserSweep 2.5s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 3;
+}
+
+@keyframes laserSweep {
+  0% {
+    top: 4%;
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    top: 96%;
+    opacity: 0.8;
+  }
+}
+
+.tb-proc-vignette {
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.tb-proc-placeholder {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+}
+
+.tb-proc-file-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.85rem;
+  padding: 0.25rem 0.75rem;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-full);
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+.tb-proc-file-name {
+  font-weight: 600;
+  color: #0d1b3e;
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tb-proc-file-dot {
+  color: #94a3b8;
+}
+
+.tb-proc-file-size {
+  color: #64748b;
+}
+
+/* ==========================================================================
+   Right Column: Stepper Timeline Matching Reference
+   ========================================================================== */
+
+.tb-proc-card--timeline {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem 0;
+}
+
+.tb-proc-stepper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+
+.tb-proc-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  position: relative;
+  transition: all var(--transition-duration-fast) ease;
+}
+
+.tb-proc-step-indicator-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* Step Badges (Completed, Active, Pending) */
+.tb-proc-step-badge {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* Completed: Solid Blue with Checkmark */
+.tb-proc-step--completed .tb-proc-step-badge {
+  background-color: #0066ff;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 102, 255, 0.3);
+  animation: badgePop 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.tb-proc-step-check-icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* Active: Glowing Double-Ring Circle */
+.tb-proc-step--active .tb-proc-step-pulse-ring {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2.5px solid #0066ff;
+  background-color: #e0f2fe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 4px rgba(0, 102, 255, 0.15);
+  animation: pulseGlow 1.8s infinite ease-in-out;
+}
+
+.tb-proc-step-pulse-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #0066ff;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 4px rgba(0, 102, 255, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 0 7px rgba(0, 102, 255, 0.25);
+  }
+}
+
+/* Pending: Muted Circle */
+.tb-proc-step--pending .tb-proc-step-pending-dot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px dashed #cbd5e1;
+  background-color: #f8fafc;
+}
+
+/* Connecting Vertical Line */
+.tb-proc-step-line {
+  width: 2px;
+  height: 40px;
+  background-color: #e2e8f0;
+  margin: 4px 0;
+  transition: background-color 0.4s ease;
+}
+
+.tb-proc-step-line--completed {
+  background-color: #0066ff;
+}
+
+/* Step Text Hierarchy */
+.tb-proc-step-content {
+  display: flex;
+  flex-direction: column;
+  padding-top: 4px;
+  padding-bottom: 1.5rem;
+}
+
+.tb-proc-step-title {
+  font-family: var(--font-sans);
+  font-size: 1.15rem;
+  font-weight: 750;
+  color: #0d1b3e;
+  line-height: 1.25;
+  transition: color var(--transition-duration-fast) ease;
+}
+
+.tb-proc-step--pending .tb-proc-step-title {
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.tb-proc-step--active .tb-proc-step-title {
+  color: #0d1b3e;
+  font-weight: 800;
+}
+
+.tb-proc-step-detail {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: #0284c7;
+  margin-top: 0.25rem;
+  animation: fadeInDetail 0.25s ease-out both;
+}
+
+@keyframes fadeInDetail {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes badgePop {
+  0% {
+    transform: scale(0.8);
+  }
+  70% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Progress Box & Ready Callout */
+.tb-proc-progress-box {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 1.25rem 1.4rem;
+  margin-top: 0.5rem;
+}
+
+.tb-proc-progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.65rem;
+}
+
+.tb-proc-progress-label {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 650;
+  color: #0d1b3e;
+}
+
+.tb-proc-progress-number {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #0066ff;
+}
+
+.tb-proc-progress-track {
+  width: 100%;
+  height: 8px;
+  background-color: #e2e8f0;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.tb-proc-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #0284c7 0%, #0066ff 100%);
+  border-radius: var(--radius-full);
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tb-proc-ready-callout {
+  margin-top: 1rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid #e2e8f0;
+  animation: fadeInDetail 0.3s ease-out both;
+}
+
+.tb-proc-ready-header {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 0.3rem;
+}
+
+.tb-proc-ready-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: #16a34a;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.tb-proc-ready-title {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 750;
+  color: #16a34a;
+}
+
+.tb-proc-ready-text {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  color: #475569;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* ==========================================================================
+   Missing Image Recovery Fallback Card
+   ========================================================================== */
+
+.tb-proc-recovery-card {
+  max-width: 560px;
+  margin: 2rem auto;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 24px;
+  box-shadow: 0 8px 30px -4px rgba(15, 23, 42, 0.06);
+  padding: 2.5rem 2rem;
+  text-align: center;
+}
+
+.tb-proc-recovery-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.tb-proc-recovery-title {
+  font-family: var(--font-sans);
+  font-size: 1.35rem;
+  font-weight: 750;
+  color: #0d1b3e;
+  margin: 0 0 0.65rem 0;
+}
+
+.tb-proc-recovery-desc {
+  font-family: var(--font-sans);
+  font-size: 0.925rem;
+  color: #64748b;
+  margin: 0 0 1.75rem 0;
+  line-height: 1.5;
+}
+
+.tb-proc-recovery-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.tb-proc-recovery-btn {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.7rem 1.5rem;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-duration-fast) ease;
+}
+
+.tb-proc-recovery-btn--primary {
+  background-color: #0066ff;
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 4px 14px rgba(0, 102, 255, 0.25);
+}
+
+.tb-proc-recovery-btn--primary:hover {
+  background-color: #0052cc;
+  box-shadow: 0 6px 18px rgba(0, 102, 255, 0.35);
+}
+
+.tb-proc-recovery-btn--secondary {
+  background-color: #ffffff;
+  color: #0d1b3e;
+  border: 1px solid #cbd5e1;
+}
+
+.tb-proc-recovery-btn--secondary:hover {
+  background-color: #f8fafc;
+  border-color: #94a3b8;
+}
+
+/* ==========================================================================
+   Bottom Action Bar (Back Button)
+   ========================================================================== */
+
+.tb-proc-actions-bar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  max-width: 940px;
+  margin: 0 auto;
+}
+
+.tb-proc-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #ffffff;
+  color: #0d1b3e;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: var(--radius-full);
+  padding: 0.75rem 1.75rem;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+  transition: all var(--transition-duration-fast) ease;
+}
+
+.tb-proc-back-btn:hover {
+  background-color: #f8fafc;
+  border-color: #cbd5e1;
+  transform: translateX(-2px);
+}
+
+.tb-proc-back-btn:focus-visible {
+  outline: 2px solid #0066ff;
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+
+@keyframes procFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 900px) {
+  .tb-proc-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: 500px;
+  }
+
+  .tb-proc-card--timeline {
+    padding: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .tb-proc-content {
+    padding: 1.5rem 0 3rem;
+  }
+
+  .tb-proc-title {
+    font-size: 1.85rem;
+  }
+
+  .tb-proc-bg-decor {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tb-proc-content,
+  .tb-proc-ready-callout,
+  .tb-proc-step-detail,
+  .tb-proc-step--completed .tb-proc-step-badge {
+    animation: none;
+  }
+
+  .tb-proc-scanner-bar {
+    display: none;
+  }
+
+  .tb-proc-step--active .tb-proc-step-pulse-ring {
+    animation: none;
+    box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.2);
+  }
+
+  .tb-proc-progress-fill,
+  .tb-proc-step-line,
+  .tb-proc-back-btn {
+    transition: none;
+  }
+}

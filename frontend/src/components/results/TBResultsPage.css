@@ -1,0 +1,1057 @@
+/**
+ * MediScan AI — Tuberculosis Results Page Styles
+ * Restores visual hierarchy from media_1793432502866_522c82d8.jpg:
+ * - Spacious two-column clinical demonstration layout
+ * - Strong card presentation with rounded borders and soft elevation
+ * - Professional DEMO SIMULATION badge
+ * - Educational annotation color system (Green = Reference, Blue = Inspection, Red = Highlighted Demo)
+ * - Interactive visualization scenario switcher
+ */
+
+.tb-results-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f8fafc;
+  color: var(--color-text-primary, #0f172a);
+  font-family: var(--font-family-base, 'Plus Jakarta Sans', system-ui, sans-serif);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Background Decorative Pulmonary Graphics */
+.tb-results-bg-decor {
+  position: absolute;
+  top: 60px;
+  width: 440px;
+  height: 560px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.14;
+}
+
+.tb-results-bg-decor--left {
+  left: -90px;
+}
+
+.tb-results-bg-decor--right {
+  right: -90px;
+  transform: scaleX(-1);
+}
+
+.tb-results-bg-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.tb-results-main {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  padding: 24px 0 60px 0;
+}
+
+.tb-results-container {
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* 1. Header Title Block */
+.tb-results-header-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.tb-results-title {
+  margin: 0;
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.025em;
+}
+
+.tb-results-header-badges {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.tb-results-capsule {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #f0f9ff;
+  border: 1px solid #bae6fd;
+  border-radius: 9999px;
+  padding: 6px 16px;
+  color: #0284c7;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.tb-results-capsule-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+}
+
+.tb-results-capsule-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Small, Professional DEMO SIMULATION Badge */
+.tb-demo-simulation-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 9999px;
+  background-color: #f8fafc;
+  border: 1px solid #cbd5e1;
+  color: #475569;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.tb-demo-simulation-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #0284c7;
+}
+
+/* Educational Scenario Control Bar */
+.tb-scenario-control-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 9999px;
+  padding: 6px 16px;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.03);
+  margin-top: 4px;
+}
+
+.tb-scenario-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+}
+
+.tb-scenario-label {
+  color: #64748b;
+  font-weight: 600;
+}
+
+.tb-scenario-name {
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.tb-scenario-pills {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.tb-scenario-pill {
+  padding: 3px 10px;
+  border-radius: 9999px;
+  background-color: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: #475569;
+  font-size: 0.74rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+}
+
+.tb-scenario-pill:hover {
+  background-color: #e2e8f0;
+  color: #0f172a;
+}
+
+.tb-scenario-pill--active {
+  background-color: #0284c7;
+  border-color: #0284c7;
+  color: #ffffff !important;
+  box-shadow: 0 1px 4px rgba(2, 132, 199, 0.25);
+}
+
+.tb-results-sublabel {
+  margin: 2px 0 0 0;
+  font-size: 0.82rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+/* Error Banner */
+.tb-results-error-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 20px;
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 12px;
+  color: #991b1b;
+}
+
+.tb-results-error-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tb-results-error-icon {
+  font-size: 1.25rem;
+}
+
+.tb-results-error-title {
+  margin: 0;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.tb-results-error-msg {
+  margin: 0;
+  font-size: 0.82rem;
+  color: #b91c1c;
+}
+
+.tb-results-retry-btn {
+  padding: 6px 14px;
+  background-color: #dc2626;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.tb-results-retry-btn:hover {
+  background-color: #b91c1c;
+}
+
+/* Loading Card */
+.tb-results-loading-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 60px 24px;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.tb-results-loading-spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid #e0f2fe;
+  border-top-color: #0284c7;
+  border-radius: 50%;
+  animation: tbResultsSpin 0.8s linear infinite;
+}
+
+@keyframes tbResultsSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.tb-results-loading-text {
+  margin: 0;
+  font-size: 0.92rem;
+  color: #475569;
+  font-weight: 600;
+}
+
+/* 2. Main Two-Column Content Grid */
+.tb-results-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.42fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+/* Left Column: Side-by-Side Images & Views */
+.tb-results-visual-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.tb-results-images-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* Image Card */
+.tb-results-img-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 14px;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  position: relative;
+}
+
+.tb-results-img-card--active {
+  border-color: #0284c7;
+  box-shadow: 0 0 0 1px #0284c7, 0 8px 24px rgba(2, 132, 199, 0.08);
+}
+
+.tb-results-img-card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.tb-results-card-header-icon {
+  width: 18px;
+  height: 18px;
+  color: #0284c7;
+}
+
+.tb-results-img-card-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* Viewport for Radiograph Display */
+.tb-results-img-viewport {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-color: #090d16;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tb-results-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.tb-results-anatomical-marker {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.92rem;
+  font-weight: 800;
+  font-family: monospace;
+  z-index: 2;
+  user-select: none;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* Educational Reference Annotation Layer */
+.tb-results-annotation-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.tb-educational-overlay-zone {
+  position: absolute;
+  border: 2px dashed;
+  border-radius: 10px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 4px 6px;
+  transition: all 0.2s ease;
+}
+
+.tb-educational-overlay-zone--selected {
+  box-shadow: 0 0 0 2px #ffffff, 0 0 12px rgba(2, 132, 199, 0.5);
+  filter: brightness(1.15);
+}
+
+.tb-educational-overlay-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.tb-educational-overlay-label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: #ffffff;
+  background-color: rgba(15, 23, 42, 0.8);
+  padding: 1px 5px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+/* Educational Indicator Pill inside Annotated View */
+.tb-annotated-disclaimer-pill {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(15, 23, 42, 0.85);
+  color: #94a3b8;
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 4;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.tb-annotated-disclaimer-pill--baseline {
+  color: #38bdf8;
+  border-color: rgba(56, 189, 248, 0.3);
+}
+
+/* Sub-Image Switcher Tabs Row */
+.tb-results-tabs-row {
+  display: flex;
+  gap: 12px;
+}
+
+.tb-results-tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+}
+
+.tb-results-tab-btn--active {
+  border-color: #0284c7;
+  background-color: #f0f9ff;
+  box-shadow: 0 0 0 1px #0284c7;
+}
+
+.tb-results-tab-thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  background-color: #e0f2fe;
+  color: #0284c7;
+}
+
+.tb-results-tab-thumb svg {
+  width: 24px;
+  height: 24px;
+}
+
+.tb-results-tab-label {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.tb-results-tab-btn--active .tb-results-tab-label {
+  color: #0284c7;
+}
+
+/* Compact Color Annotation Legend Card */
+.tb-annotation-legend-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 10px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.02);
+}
+
+.tb-legend-items {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tb-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tb-legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.tb-legend-dot--green {
+  background-color: #10b981;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+}
+
+.tb-legend-dot--blue {
+  background-color: #0284c7;
+  box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.2);
+}
+
+.tb-legend-dot--red {
+  background-color: #ef4444;
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+}
+
+.tb-legend-text {
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.tb-legend-disclaimer {
+  margin: 0;
+  font-size: 0.70rem;
+  color: #94a3b8;
+  font-style: italic;
+  text-align: center;
+}
+
+/* 3. Right Details Column */
+.tb-results-details-col {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Card General Styling */
+.tb-results-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+}
+
+.tb-results-card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 18px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.tb-results-card-title-icon {
+  width: 18px;
+  height: 18px;
+  color: #0284c7;
+}
+
+.tb-results-card-title {
+  margin: 0;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* Empty State for Findings */
+.tb-results-findings-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 36px 24px;
+  gap: 8px;
+}
+
+.tb-findings-empty-icon {
+  width: 34px;
+  height: 34px;
+  color: #94a3b8;
+  margin-bottom: 4px;
+}
+
+.tb-findings-empty-title {
+  margin: 0;
+  font-size: 0.94rem;
+  font-weight: 700;
+  color: #334155;
+}
+
+.tb-findings-empty-desc {
+  margin: 0;
+  font-size: 0.78rem;
+  color: #64748b;
+  line-height: 1.45;
+  max-width: 320px;
+}
+
+/* Findings List */
+.tb-results-findings-list {
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tb-finding-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  background-color: #ffffff;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.tb-finding-item:hover {
+  background-color: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+.tb-finding-item--selected {
+  background-color: #f0f9ff !important;
+  border-color: #0284c7 !important;
+  box-shadow: 0 0 0 1px #0284c7;
+}
+
+.tb-finding-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 0.76rem;
+  font-weight: 800;
+  margin-top: 2px;
+}
+
+.tb-finding-thumb {
+  width: 54px;
+  height: 50px;
+  min-width: 54px;
+  border-radius: 8px;
+  border: 2px dashed;
+  overflow: hidden;
+  background-color: #0b1120;
+}
+
+.tb-finding-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(125%);
+}
+
+.tb-finding-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.tb-finding-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tb-finding-title {
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.tb-finding-tag {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 9999px;
+  border: 1px solid;
+  white-space: nowrap;
+}
+
+.tb-finding-desc {
+  margin: 0;
+  font-size: 0.77rem;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+/* Other Observations Card */
+.tb-results-obs-list {
+  padding: 12px 18px 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tb-results-obs-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px dashed #f1f5f9;
+}
+
+.tb-results-obs-row:last-child {
+  border-bottom: none;
+}
+
+.tb-results-obs-label-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tb-results-obs-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+}
+
+.tb-results-obs-icon svg {
+  width: 17px;
+  height: 17px;
+}
+
+.tb-results-obs-icon--heart {
+  color: #0284c7;
+}
+
+.tb-results-obs-icon--lung {
+  color: #0284c7;
+}
+
+.tb-results-obs-icon--bone {
+  color: #0284c7;
+}
+
+.tb-results-obs-name {
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.tb-results-obs-val {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #64748b;
+}
+
+/* Medical Problem, Solution & Common Image Insights Card (Collapsible below Images) */
+.tb-results-card--clinical-guidance {
+  margin-top: 4px;
+  transition: all 0.2s ease-in-out;
+}
+
+.tb-clinical-guidance-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  user-select: none;
+  padding: 14px 18px;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.tb-clinical-guidance-header:hover {
+  background-color: #f8fafc;
+}
+
+.tb-clinical-guidance-header:focus-visible {
+  outline: 2px solid #0284c7;
+  outline-offset: -2px;
+}
+
+.tb-clinical-guidance-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tb-clinical-guidance-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #0284c7;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.tb-toggle-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.tb-guidance-arrow {
+  display: inline-block;
+  font-size: 1rem;
+  line-height: 1;
+  transition: transform 0.2s ease-in-out;
+}
+
+.tb-guidance-arrow--open {
+  transform: rotate(180deg);
+}
+
+.tb-clinical-guidance-content {
+  padding: 16px 20px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  border-top: 1px solid #f1f5f9;
+  animation: tbGuidanceFadeIn 0.2s ease-in-out;
+}
+
+@keyframes tbGuidanceFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tb-tech-medical-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+
+.tb-tech-medical-header-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.tb-tech-medical-badge {
+  font-size: 0.70rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.tb-tech-medical-badge--problem {
+  background-color: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+}
+
+.tb-tech-medical-badge--solution {
+  background-color: #f0fdf4;
+  color: #16a34a;
+  border: 1px solid #bbf7d0;
+}
+
+.tb-tech-medical-badge--insights {
+  background-color: #f0f9ff;
+  color: #0284c7;
+  border: 1px solid #bae6fd;
+}
+
+.tb-tech-medical-heading {
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.tb-tech-medical-text {
+  margin: 0;
+  font-size: 0.80rem;
+  line-height: 1.5;
+  color: #475569;
+}
+
+.tb-tech-medical-list {
+  margin: 2px 0 0 0;
+  padding-left: 18px;
+  font-size: 0.80rem;
+  line-height: 1.5;
+  color: #475569;
+}
+
+.tb-tech-medical-list li {
+  margin-bottom: 5px;
+}
+
+.tb-tech-medical-list li:last-child {
+  margin-bottom: 0;
+}
+
+/* Toast Notification */
+.tb-results-toast {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background-color: #0f172a;
+  color: #ffffff;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  align-self: center;
+}
+
+.tb-results-toast-icon {
+  color: #38bdf8;
+  font-weight: 700;
+}
+
+/* 4. Bottom Actions Bar */
+.tb-results-actions-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-top: 18px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.tb-results-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+}
+
+.tb-results-btn--back {
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+}
+
+.tb-results-btn--back:hover {
+  background-color: #f1f5f9;
+  border-color: #94a3b8;
+  color: #0f172a;
+}
+
+.tb-results-btn-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tb-results-btn--download {
+  background-color: #0284c7;
+  border: 1px solid #0284c7;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.2);
+}
+
+.tb-results-btn--download svg {
+  width: 16px;
+  height: 16px;
+}
+
+.tb-results-btn--download:hover {
+  background-color: #0369a1;
+  border-color: #0369a1;
+}
+
+.tb-results-btn--new {
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+}
+
+.tb-results-btn--new svg {
+  width: 16px;
+  height: 16px;
+}
+
+.tb-results-btn--new:hover {
+  background-color: #f1f5f9;
+  border-color: #94a3b8;
+  color: #0f172a;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 992px) {
+  .tb-results-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tb-results-images-pair {
+    grid-template-columns: 1fr;
+  }
+}

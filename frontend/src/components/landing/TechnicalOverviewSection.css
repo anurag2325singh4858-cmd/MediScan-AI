@@ -1,0 +1,130 @@
+/* ==========================================================================
+   Technical Overview Section Styles (Light Medical Theme)
+   ========================================================================== */
+
+.tech-overview {
+  background: linear-gradient(180deg, #f8faff 0%, #edf6ff 50%, #f4f0ff 100%);
+  color: #101b3a;
+  padding: clamp(3.5rem, 6vw, 5rem) 0 4rem 0;
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+  cursor: default;
+}
+
+.tech-overview__container {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2rem, 4vw, 3rem);
+}
+
+.tech-overview__header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.tech-overview__title {
+  font-size: clamp(2rem, 3.5vw, 2.65rem);
+  font-weight: 800;
+  color: #101b3a;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+/* Light Blue Card */
+.tech-overview__card {
+  background: linear-gradient(135deg, #dbeafe 0%, #eff6ff 100%);
+  border: 1px solid #bfdbfe;
+  border-radius: 24px;
+  padding: clamp(1.75rem, 3vw, 2.5rem);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+  max-width: 1040px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.tech-overview__flow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+/* Step Column */
+.tech-overview__step {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.5rem;
+}
+
+.tech-overview__icon-box {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.25rem;
+  background-color: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.tech-overview__icon-box svg {
+  width: 26px;
+  height: 26px;
+}
+
+.tech-overview__icon-box--cyan {
+  border: 1.5px solid #a5f3fc;
+  color: #0284c7;
+}
+
+.tech-overview__icon-box--blue {
+  border: 1.5px solid #bae6fd;
+  color: #0284c7;
+}
+
+.tech-overview__icon-box--coral {
+  border: 1.5px solid #fed7aa;
+  color: #ea580c;
+}
+
+.tech-overview__step-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #101b3a;
+  margin: 0;
+}
+
+.tech-overview__step-desc {
+  font-size: 0.80rem;
+  font-weight: 500;
+  color: #475569;
+  line-height: 1.35;
+  margin: 0;
+  max-width: 180px;
+}
+
+/* Arrow */
+.tech-overview__arrow {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #38bdf8;
+  user-select: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .tech-overview__flow {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .tech-overview__arrow {
+    transform: rotate(90deg);
+  }
+}

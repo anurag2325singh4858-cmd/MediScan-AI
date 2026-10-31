@@ -1,0 +1,327 @@
+/**
+ * MediScan AI — Screening Type Selection Page Styles
+ * Matches the reference image layout, typography, protruding icon badges, and colors
+ */
+
+.selection-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ==========================================================================
+   Background Medical Visuals (Faint Left & Right Decorative Elements)
+   ========================================================================== */
+
+.selection-bg-decor {
+  position: absolute;
+  top: 15%;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  width: clamp(260px, 30vw, 420px);
+  height: auto;
+  opacity: 0.12;
+  transition: opacity var(--transition-duration-normal) ease;
+}
+
+.selection-bg-decor--left {
+  left: -20px;
+}
+
+.selection-bg-decor--right {
+  right: -20px;
+}
+
+.selection-bg-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ==========================================================================
+   Main Content Area
+   ========================================================================== */
+
+.selection-content {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(2.5rem, 5vw, 4.5rem) 0 clamp(3.5rem, 6vw, 5.5rem);
+  animation: selectionFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ==========================================================================
+   Heading Block
+   ========================================================================== */
+
+.selection-heading-block {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto clamp(3.5rem, 6vw, 4.75rem);
+}
+
+.selection-eyebrow {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-tb-primary); /* Blue accent matching reference */
+  margin-bottom: 1.25rem;
+}
+
+.selection-title {
+  font-family: var(--font-sans);
+  font-size: clamp(2.1rem, 4.2vw, 3.1rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: #0d1b3e; /* Deep navy */
+  margin-bottom: 1.25rem;
+  -webkit-font-smoothing: antialiased;
+}
+
+.selection-subtitle {
+  font-family: var(--font-sans);
+  font-size: clamp(0.95rem, 1.8vw, 1.0625rem);
+  line-height: 1.55;
+  color: #475569; /* Slate muted */
+  margin-bottom: 0.5rem;
+}
+
+.selection-note {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  color: #64748b;
+  margin: 0;
+}
+
+/* ==========================================================================
+   Screening Cards Grid
+   ========================================================================== */
+
+.selection-cards {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: clamp(1.75rem, 3.5vw, 3rem);
+  max-width: 840px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.selection-card {
+  flex: 1;
+  max-width: 380px;
+  background-color: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  border-radius: 28px;
+  box-shadow: 0 10px 32px -4px rgba(15, 23, 42, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 clamp(1.5rem, 2.5vw, 2.25rem) clamp(1.75rem, 3vw, 2.5rem);
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.25s ease;
+  user-select: none;
+}
+
+.selection-card:hover {
+  transform: translateY(-5px);
+}
+
+.selection-card--tb:hover {
+  box-shadow: 0 18px 40px -6px rgba(2, 132, 199, 0.12);
+  border-color: #bae6fd;
+}
+
+.selection-card--dr:hover {
+  box-shadow: 0 18px 40px -6px rgba(234, 88, 12, 0.12);
+  border-color: #fed7aa;
+}
+
+/* Protruding Icon Badge (Top Center Circle) */
+.selection-card__icon-badge {
+  width: 116px;
+  height: 116px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -58px; /* Pull up to protrude halfway above card */
+  margin-bottom: 1.75rem;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+  transition: transform 0.25s ease;
+  flex-shrink: 0;
+}
+
+.selection-card:hover .selection-card__icon-badge {
+  transform: scale(1.05);
+}
+
+.selection-card__icon-badge--tb {
+  background-color: #e1ecff;
+}
+
+.selection-card__icon-badge--dr {
+  background-color: #ffe8dc;
+}
+
+.selection-card__icon-svg {
+  width: 62px;
+  height: 62px;
+}
+
+/* Card Body Content */
+.selection-card__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  flex: 1;
+}
+
+.selection-card__title {
+  font-family: var(--font-sans);
+  font-size: 1.3rem;
+  font-weight: 750;
+  letter-spacing: -0.025em;
+  color: #0d1b3e; /* Deep navy */
+  margin-bottom: 0.4rem;
+  line-height: 1.25;
+}
+
+.selection-card__subtitle {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: #64748b; /* Slate muted */
+  margin-bottom: 2.25rem;
+  line-height: 1.4;
+}
+
+/* Action Buttons */
+.selection-card__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.9rem 2rem;
+  border-radius: var(--radius-full);
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  margin-top: auto;
+  transition: background-color var(--transition-duration-fast) var(--transition-timing-standard),
+              transform var(--transition-duration-fast) var(--transition-timing-standard),
+              box-shadow var(--transition-duration-fast) var(--transition-timing-standard);
+  outline: none;
+}
+
+.selection-card__btn:focus-visible {
+  outline: 2px solid var(--color-tb-primary);
+  outline-offset: 2px;
+}
+
+/* TB Button: Solid Blue matching reference */
+.selection-card__btn--tb {
+  background-color: #0066ff;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(0, 102, 255, 0.25);
+}
+
+.selection-card__btn--tb:hover {
+  background-color: #0052cc;
+  box-shadow: 0 6px 18px rgba(0, 102, 255, 0.35);
+  transform: translateY(-1px);
+}
+
+/* DR Button: Soft Pale Peach matching reference */
+.selection-card__btn--dr {
+  background-color: #ffeadb;
+  color: #e77c3a;
+}
+
+.selection-card__btn--dr:hover {
+  background-color: #ffd9c2;
+  color: #d46624;
+  transform: translateY(-1px);
+}
+
+.selection-card__btn-arrow {
+  font-size: 1.15rem;
+  line-height: 1;
+  transition: transform var(--transition-duration-fast) ease;
+}
+
+.selection-card:hover .selection-card__btn-arrow {
+  transform: translateX(3px);
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .selection-cards {
+    flex-direction: column;
+    align-items: center;
+    gap: 4.5rem; /* Gap accounts for protruding top icon badge */
+    max-width: 360px;
+  }
+
+  .selection-card {
+    width: 100%;
+    max-width: 360px;
+  }
+
+  .selection-bg-decor {
+    width: 180px;
+    opacity: 0.06;
+  }
+
+  .selection-break-desktop {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .selection-content {
+    animation: none !important;
+  }
+
+  .selection-card,
+  .selection-card:hover,
+  .selection-card__icon-badge,
+  .selection-card__btn,
+  .selection-card__btn-arrow {
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+@keyframes selectionFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,129 +1,263 @@
-:root {
-  --bg-color: #f8fafc;
-  --card-bg: #ffffff;
-  --text-primary: #0f172a;
-  --text-secondary: #475569;
-  --accent-color: #0284c7;
-  --border-color: #e2e8f0;
-  --success-color: #16a34a;
-  --error-color: #dc2626;
-  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+/* MediScan AI — Application Shell & Health Verification Styles */
+
+.landing-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, #f8faff 0%, #edf6ff 50%, #f4f0ff 100%);
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: var(--font-family);
-  background-color: var(--bg-color);
-  color: var(--text-primary);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+/* ==========================================================================
+   Feedback Toast (Non-intrusive action feedback)
+   ========================================================================== */
+
+.hero-feedback-toast {
+  position: fixed;
+  bottom: var(--space-6);
+  right: var(--space-6);
+  z-index: var(--z-toast);
+  background-color: #0f172a;
+  color: #ffffff;
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  animation: toastSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+  max-width: 420px;
 }
+
+.hero-feedback-toast__content {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-snug);
+}
+
+.hero-feedback-toast__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-dr-primary);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.hero-feedback-toast__close {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: var(--space-1);
+  margin-left: auto;
+  font-size: var(--font-size-sm);
+  line-height: 1;
+}
+
+.hero-feedback-toast__close:hover {
+  color: #ffffff;
+}
+
+@keyframes toastSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   System Status Modal (Preserving Module 1 Verification View)
+   ========================================================================== */
+
+.system-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(4px);
+  z-index: var(--z-modal-backdrop);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+  animation: modalFadeIn 0.25s ease-out both;
+}
+
+.system-modal {
+  width: 100%;
+  max-width: 600px;
+  z-index: var(--z-modal);
+  animation: modalScaleUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.system-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.system-modal__header h2 {
+  margin: 0;
+  font-size: var(--font-size-xl);
+  color: var(--color-text-primary);
+}
+
+.system-modal__close-btn {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  transition: color var(--transition-duration-fast) var(--transition-timing-standard);
+}
+
+.system-modal__close-btn:hover {
+  color: var(--color-text-primary);
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modalScaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ==========================================================================
+   Legacy Standalone Card Support (Module 1 Health Check Verification View)
+   ========================================================================== */
 
 .app-container {
   max-width: 680px;
   width: 90%;
-  margin: 2rem auto;
-  padding: 2.5rem;
-  background-color: var(--card-bg);
-  border-radius: 12px;
-  border: 1px solid var(--border-color);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  margin: var(--space-10) auto;
+  padding: var(--space-8);
+  background-color: var(--color-card-bg);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border-light);
+  box-shadow: var(--shadow-md);
 }
 
 .header {
-  border-bottom: 1px solid var(--border-color);
-  padding-bottom: 1.5rem;
-  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--color-border-light);
+  padding-bottom: var(--space-6);
+  margin-bottom: var(--space-6);
 }
 
 .header h1 {
-  margin: 0 0 0.5rem 0;
-  font-size: 2rem;
-  color: var(--accent-color);
+  margin: 0 0 var(--space-2) 0;
+  font-size: var(--font-size-3xl);
+  color: var(--color-tb-primary);
 }
 
 .header p {
   margin: 0;
-  color: var(--text-secondary);
-  font-size: 1rem;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-base);
 }
 
 .status-section {
-  background-color: #f1f5f9;
-  border-radius: 8px;
-  padding: 1.25rem;
-  margin-bottom: 1.5rem;
+  background-color: var(--color-bg-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+  margin-bottom: var(--space-6);
+  border: 1px solid var(--color-border-subtle);
 }
 
 .status-section h2 {
   margin-top: 0;
-  font-size: 1.1rem;
-  color: var(--text-primary);
+  margin-bottom: var(--space-3);
+  font-size: var(--font-size-lg);
+  color: var(--color-text-primary);
 }
 
 .status-badge {
   display: inline-block;
-  padding: 0.25rem 0.75rem;
-  border-radius: 9999px;
-  font-size: 0.875rem;
-  font-weight: 500;
-  margin-bottom: 0.75rem;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--space-3);
 }
 
 .status-badge.connected {
-  background-color: #dcfce7;
-  color: var(--success-color);
+  background-color: var(--color-success-bg);
+  color: var(--color-success);
+  border: 1px solid var(--color-success-border);
 }
 
 .status-badge.disconnected {
-  background-color: #fee2e2;
-  color: var(--error-color);
+  background-color: var(--color-error-bg);
+  color: var(--color-error);
+  border: 1px solid var(--color-error-border);
 }
 
 .status-badge.checking {
-  background-color: #e0f2fe;
-  color: var(--accent-color);
+  background-color: var(--color-tb-subtle);
+  color: var(--color-tb-darker);
+  border: 1px solid var(--color-tb-border);
 }
 
 .info-grid {
   display: grid;
   grid-template-columns: 140px 1fr;
-  gap: 0.5rem 1rem;
-  font-size: 0.9rem;
-  margin-top: 0.75rem;
+  gap: var(--space-2) var(--space-4);
+  font-size: var(--font-size-sm);
+  margin-top: var(--space-3);
 }
 
 .info-label {
-  font-weight: 600;
-  color: var(--text-secondary);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-secondary);
 }
 
 .info-value {
-  color: var(--text-primary);
-  font-family: monospace;
+  color: var(--color-text-primary);
+  font-family: var(--font-mono);
+  word-break: break-all;
 }
 
 .action-bar {
-  margin-top: 1rem;
+  margin-top: var(--space-4);
 }
 
 .btn-check {
-  background-color: var(--accent-color);
-  color: white;
+  background-color: var(--color-tb-primary);
+  color: var(--color-text-inverse);
   border: none;
-  border-radius: 6px;
-  padding: 0.5rem 1rem;
-  font-size: 0.9rem;
-  font-weight: 500;
+  border-radius: var(--radius-sm);
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
   cursor: pointer;
-  transition: opacity 0.2s ease;
+  transition: background-color var(--transition-duration-fast) var(--transition-timing-standard),
+              opacity var(--transition-duration-fast) var(--transition-timing-standard);
 }
 
 .btn-check:hover:not(:disabled) {
-  opacity: 0.9;
+  background-color: var(--color-tb-darker);
 }
 
 .btn-check:disabled {
@@ -132,10 +266,105 @@ body {
 }
 
 .footer-note {
-  margin-top: 1.5rem;
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-  border-top: 1px solid var(--border-color);
-  padding-top: 1rem;
+  margin-top: var(--space-6);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  border-top: 1px solid var(--color-border-light);
+  padding-top: var(--space-4);
   text-align: center;
+}
+
+/* ==========================================================================
+   Floating Get Started CTA Button (Sole Clickable Control on Landing Scroll)
+   ========================================================================== */
+
+.landing-floating-cta {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: var(--z-floating-cta, 900);
+  background: linear-gradient(135deg, #ff6b4a 0%, #ea580c 100%);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius-full, 9999px);
+  padding: 14px 28px;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 10px 25px -4px rgba(234, 88, 12, 0.45), 0 4px 10px -2px rgba(234, 88, 12, 0.25);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(16px);
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.2s ease;
+  user-select: none;
+}
+
+.landing-floating-cta--visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.landing-floating-cta--visible:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+  box-shadow: 0 14px 30px -4px rgba(234, 88, 12, 0.55), 0 6px 14px -2px rgba(234, 88, 12, 0.35);
+}
+
+.landing-floating-cta--visible:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+.landing-floating-cta:focus-visible {
+  outline: 3px solid #fed7aa;
+  outline-offset: 3px;
+}
+
+.landing-floating-cta__arrow {
+  font-size: 1.15rem;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.landing-floating-cta:hover .landing-floating-cta__arrow {
+  transform: translateX(4px);
+}
+
+@media (max-width: 640px) {
+  .landing-floating-cta {
+    bottom: 20px;
+    right: 20px;
+    padding: 12px 22px;
+    font-size: 0.92rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .landing-floating-cta,
+  .landing-floating-cta__arrow {
+    transition: none !important;
+  }
+  .landing-floating-cta:hover {
+    transform: none !important;
+  }
+}
+
+/* ==========================================================================
+   Smooth-Scroll Behavior & Reduced-Motion
+   ========================================================================== */
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }

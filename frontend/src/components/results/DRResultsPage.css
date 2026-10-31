@@ -1,0 +1,885 @@
+/**
+ * MediScan AI — Diabetic Retinopathy (DR) Results Page Styles
+ * Coral / Orange accent theme (#ea580c / #f97316)
+ * Responsive two-column layout with rounded cards and dark navy typography
+ */
+
+.dr-results-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #fafaf9;
+  color: var(--color-text-primary, #0f172a);
+  font-family: var(--font-family-base, 'Plus Jakarta Sans', system-ui, sans-serif);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Background Decorative Retinal Circles in Coral/Orange */
+.dr-results-bg-decor {
+  position: absolute;
+  top: 50px;
+  width: 440px;
+  height: 560px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.12;
+}
+
+.dr-results-bg-decor--left {
+  left: -90px;
+}
+
+.dr-results-bg-decor--right {
+  right: -90px;
+}
+
+.dr-results-bg-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.dr-results-main {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  padding: 24px 0 60px 0;
+}
+
+.dr-results-container {
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* 1. Header Title & Workflow Capsule Block */
+.dr-results-header-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.dr-results-title {
+  margin: 0;
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.025em;
+}
+
+.dr-results-header-badges {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.dr-results-capsule {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: 9999px;
+  padding: 6px 16px;
+  color: #ea580c;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.dr-results-capsule-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+}
+
+.dr-results-capsule-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Error Banner */
+.dr-results-error-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 20px;
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 12px;
+  color: #991b1b;
+}
+
+.dr-results-error-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dr-results-error-icon {
+  font-size: 1.25rem;
+}
+
+.dr-results-error-title {
+  margin: 0;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.dr-results-error-msg {
+  margin: 0;
+  font-size: 0.82rem;
+  color: #b91c1c;
+}
+
+.dr-results-retry-btn {
+  padding: 6px 14px;
+  background-color: #dc2626;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.dr-results-retry-btn:hover {
+  background-color: #b91c1c;
+}
+
+/* Loading Card */
+.dr-results-loading-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 60px 24px;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.dr-results-loading-spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid #ffedd5;
+  border-top-color: #ea580c;
+  border-radius: 50%;
+  animation: drResultsSpin 0.8s linear infinite;
+}
+
+@keyframes drResultsSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.dr-results-loading-text {
+  margin: 0;
+  font-size: 0.92rem;
+  color: #475569;
+  font-weight: 600;
+}
+
+/* 2. Main Two-Column Content Grid */
+.dr-results-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.42fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+/* Left Column: Images, Tabs & Guidance Card */
+.dr-results-visual-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.dr-results-images-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* Image Card */
+.dr-results-img-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 14px;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  position: relative;
+}
+
+.dr-results-img-card--active {
+  border-color: #ea580c;
+  box-shadow: 0 0 0 1px #ea580c, 0 8px 24px rgba(234, 88, 12, 0.08);
+}
+
+.dr-results-img-card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.dr-results-card-header-icon {
+  width: 18px;
+  height: 18px;
+  color: #ea580c;
+}
+
+.dr-results-img-card-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* Viewport for Retinal Fundus Display */
+.dr-results-img-viewport {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-color: #090d16;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dr-results-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.dr-results-anatomical-marker {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  background-color: rgba(15, 23, 42, 0.65);
+  padding: 2px 7px;
+  border-radius: 4px;
+  z-index: 2;
+  user-select: none;
+  backdrop-filter: blur(4px);
+}
+
+/* Retinal Annotation Layer */
+.dr-results-annotation-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.dr-educational-overlay-zone {
+  position: absolute;
+  border: 2px dashed;
+  border-radius: 10px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 4px;
+  transition: all 0.2s ease;
+}
+
+.dr-educational-overlay-zone--selected {
+  box-shadow: 0 0 0 2px #ffffff, 0 0 12px rgba(234, 88, 12, 0.6);
+  filter: brightness(1.2);
+}
+
+.dr-educational-overlay-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.dr-annotated-disclaimer-pill {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(15, 23, 42, 0.85);
+  color: #fed7aa;
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 4;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Sub-Image Switcher Tabs Row */
+.dr-results-tabs-row {
+  display: flex;
+  gap: 12px;
+}
+
+.dr-results-tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+}
+
+.dr-results-tab-btn--active {
+  border-color: #ea580c;
+  background-color: #fff7ed;
+  box-shadow: 0 0 0 1px #ea580c;
+}
+
+.dr-results-tab-thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  background-color: #ffedd5;
+  color: #ea580c;
+}
+
+.dr-results-tab-thumb svg {
+  width: 22px;
+  height: 22px;
+}
+
+.dr-results-tab-label {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.dr-results-tab-btn--active .dr-results-tab-label {
+  color: #ea580c;
+}
+
+/* Collapsible Medical Insights & Retinal Anatomy Card (Below Images) */
+.dr-results-card--clinical-guidance {
+  margin-top: 4px;
+  transition: all 0.2s ease-in-out;
+}
+
+.dr-clinical-guidance-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  user-select: none;
+  padding: 14px 18px;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.dr-clinical-guidance-header:hover {
+  background-color: #fafaf9;
+}
+
+.dr-clinical-guidance-header:focus-visible {
+  outline: 2px solid #ea580c;
+  outline-offset: -2px;
+}
+
+.dr-clinical-guidance-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dr-clinical-guidance-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #ea580c;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.dr-toggle-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.dr-guidance-arrow {
+  display: inline-block;
+  font-size: 1rem;
+  line-height: 1;
+  transition: transform 0.2s ease-in-out;
+}
+
+.dr-guidance-arrow--open {
+  transform: rotate(180deg);
+}
+
+.dr-clinical-guidance-content {
+  padding: 16px 20px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  border-top: 1px solid #f1f5f9;
+  animation: drGuidanceFadeIn 0.2s ease-in-out;
+}
+
+@keyframes drGuidanceFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dr-tech-medical-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background-color: #fafaf9;
+  border: 1px solid #e7e5e4;
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+
+.dr-tech-medical-header-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.dr-tech-medical-badge {
+  font-size: 0.70rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.dr-tech-medical-badge--overview {
+  background-color: #fff7ed;
+  color: #ea580c;
+  border: 1px solid #fed7aa;
+}
+
+.dr-tech-medical-badge--anatomy {
+  background-color: #f0fdf4;
+  color: #16a34a;
+  border: 1px solid #bbf7d0;
+}
+
+.dr-tech-medical-badge--clinical {
+  background-color: #f0f9ff;
+  color: #0284c7;
+  border: 1px solid #bae6fd;
+}
+
+.dr-tech-medical-heading {
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.dr-tech-medical-text {
+  margin: 0;
+  font-size: 0.80rem;
+  line-height: 1.5;
+  color: #475569;
+}
+
+.dr-tech-medical-list {
+  margin: 2px 0 0 0;
+  padding-left: 18px;
+  font-size: 0.80rem;
+  line-height: 1.5;
+  color: #475569;
+}
+
+.dr-tech-medical-list li {
+  margin-bottom: 5px;
+}
+
+.dr-tech-medical-list li:last-child {
+  margin-bottom: 0;
+}
+
+/* 3. Right Details Column */
+.dr-results-details-col {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Card General Styling */
+.dr-results-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+}
+
+.dr-results-card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 18px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.dr-results-card-title-icon {
+  width: 18px;
+  height: 18px;
+  color: #ea580c;
+}
+
+.dr-results-card-title {
+  margin: 0;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* Empty State for Findings */
+.dr-results-findings-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 36px 24px;
+  gap: 8px;
+}
+
+.dr-findings-empty-icon {
+  width: 34px;
+  height: 34px;
+  color: #94a3b8;
+  margin-bottom: 4px;
+}
+
+.dr-findings-empty-title {
+  margin: 0;
+  font-size: 0.94rem;
+  font-weight: 700;
+  color: #334155;
+}
+
+.dr-findings-empty-desc {
+  margin: 0;
+  font-size: 0.78rem;
+  color: #64748b;
+  line-height: 1.45;
+  max-width: 320px;
+}
+
+/* Findings List */
+.dr-results-findings-list {
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dr-finding-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  background-color: #ffffff;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.dr-finding-item:hover {
+  background-color: #fafaf9;
+  border-color: #cbd5e1;
+}
+
+.dr-finding-item--selected {
+  background-color: #fff7ed !important;
+  border-color: #ea580c !important;
+  box-shadow: 0 0 0 1px #ea580c;
+}
+
+.dr-finding-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 0.76rem;
+  font-weight: 800;
+  margin-top: 2px;
+}
+
+.dr-finding-thumb {
+  width: 54px;
+  height: 50px;
+  min-width: 54px;
+  border-radius: 8px;
+  border: 2px dashed;
+  overflow: hidden;
+  background-color: #0b1120;
+}
+
+.dr-finding-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(115%);
+}
+
+.dr-finding-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.dr-finding-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.dr-finding-title {
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.dr-finding-desc {
+  margin: 0;
+  font-size: 0.77rem;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+/* Other Observations Card */
+.dr-results-obs-list {
+  padding: 12px 18px 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dr-results-obs-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px dashed #f1f5f9;
+}
+
+.dr-results-obs-row:last-child {
+  border-bottom: none;
+}
+
+.dr-results-obs-label-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dr-results-obs-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+}
+
+.dr-results-obs-icon svg {
+  width: 17px;
+  height: 17px;
+}
+
+.dr-results-obs-icon--disc {
+  color: #ea580c;
+}
+
+.dr-results-obs-icon--clarity {
+  color: #ea580c;
+}
+
+.dr-results-obs-icon--vessel {
+  color: #ea580c;
+}
+
+.dr-results-obs-name {
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.dr-results-obs-val {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #64748b;
+}
+
+/* Toast Notification */
+.dr-results-toast {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background-color: #0f172a;
+  color: #ffffff;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  align-self: center;
+}
+
+.dr-results-toast-icon {
+  color: #fb923c;
+  font-weight: 700;
+}
+
+/* 4. Bottom Actions Bar */
+.dr-results-actions-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-top: 18px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.dr-results-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+}
+
+.dr-results-btn--back {
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+}
+
+.dr-results-btn--back:hover {
+  background-color: #f1f5f9;
+  border-color: #94a3b8;
+  color: #0f172a;
+}
+
+.dr-results-btn-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dr-results-btn--download {
+  background-color: #ea580c;
+  border: 1px solid #ea580c;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(234, 88, 12, 0.2);
+}
+
+.dr-results-btn--download svg {
+  width: 16px;
+  height: 16px;
+}
+
+.dr-results-btn--download:hover {
+  background-color: #c2410c;
+  border-color: #c2410c;
+}
+
+.dr-results-btn--new {
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+}
+
+.dr-results-btn--new svg {
+  width: 16px;
+  height: 16px;
+}
+
+.dr-results-btn--new:hover {
+  background-color: #f1f5f9;
+  border-color: #94a3b8;
+  color: #0f172a;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 992px) {
+  .dr-results-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dr-results-images-pair {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dr-results-loading-spinner {
+    animation: none;
+  }
+  .dr-clinical-guidance-content {
+    animation: none;
+  }
+  .dr-guidance-arrow {
+    transition: none;
+  }
+}

@@ -1,0 +1,178 @@
+/**
+ * MediScan AI — Design Tokens
+ * 
+ * Central design tokens establishing the visual language for MediScan AI:
+ * - Professional, healthcare-oriented aesthetic
+ * - Clean white/off-white backgrounds with dark navy typography
+ * - Dedicated workflow palettes: Tuberculosis (Blue) & Diabetic Retinopathy (Orange/Coral)
+ */
+
+:root {
+  /* ==========================================================================
+     Base Color Palette
+     ========================================================================== */
+  
+  /* Backgrounds */
+  --color-bg-white: #ffffff;
+  --color-bg-page: #f8fafc;
+  --color-bg-subtle: #f1f5f9;
+  --color-bg-muted: #e2e8f0;
+  
+  /* Card Backgrounds */
+  --color-card-bg: #ffffff;
+  --color-card-bg-subtle: #f8fafc;
+  
+  /* Text & Typography */
+  --color-text-primary: #0f172a;       /* Dark navy */
+  --color-text-secondary: #475569;     /* Slate muted */
+  --color-text-muted: #64748b;         /* Lighter muted */
+  --color-text-inverse: #ffffff;
+  
+  /* Neutral Borders */
+  --color-border-subtle: #f1f5f9;
+  --color-border-light: #e2e8f0;
+  --color-border-medium: #cbd5e1;
+  --color-border-dark: #94a3b8;
+
+  /* Status & Feedback (WCAG AA Compliant) */
+  --color-success: #16a34a;
+  --color-success-dark: #15803d;
+  --color-success-bg: #dcfce7;
+  --color-success-border: #bbf7d0;
+
+  --color-warning: #d97706;
+  --color-warning-dark: #b45309;
+  --color-warning-bg: #fef3c7;
+  --color-warning-border: #fde68a;
+
+  --color-error: #dc2626;
+  --color-error-dark: #b91c1c;
+  --color-error-bg: #fee2e2;
+  --color-error-border: #fecaca;
+
+  /* ==========================================================================
+     Workflow Color Palettes
+     ========================================================================== */
+
+  /* Tuberculosis (TB) Screening — Blue Theme */
+  --color-tb-primary: #0284c7;
+  --color-tb-darker: #0369a1;
+  --color-tb-darkest: #0c4a6e;
+  --color-tb-tint: #f0f9ff;
+  --color-tb-subtle: #e0f2fe;
+  --color-tb-border: #bae6fd;
+
+  /* Diabetic Retinopathy (DR) Screening — Coral / Orange Theme */
+  --color-dr-primary: #ea580c;
+  --color-dr-darker: #c2410c;
+  --color-dr-darkest: #7c2d12;
+  --color-dr-tint: #fff7ed;
+  --color-dr-subtle: #ffedd5;
+  --color-dr-border: #fed7aa;
+
+  /* Active Workflow Tokens (Default to TB, scoped via .theme-tb / .theme-dr) */
+  --workflow-primary: var(--color-tb-primary);
+  --workflow-darker: var(--color-tb-darker);
+  --workflow-darkest: var(--color-tb-darkest);
+  --workflow-tint: var(--color-tb-tint);
+  --workflow-subtle: var(--color-tb-subtle);
+  --workflow-border: var(--color-tb-border);
+
+  /* ==========================================================================
+     Typography & Font Stacks
+     ========================================================================== */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+  /* Font Sizes */
+  --font-size-xs: 0.75rem;     /* 12px */
+  --font-size-sm: 0.875rem;    /* 14px */
+  --font-size-base: 1rem;      /* 16px */
+  --font-size-lg: 1.125rem;    /* 18px */
+  --font-size-xl: 1.25rem;     /* 20px */
+  --font-size-2xl: 1.5rem;     /* 24px */
+  --font-size-3xl: 1.875rem;   /* 30px */
+  --font-size-4xl: 2.25rem;    /* 36px */
+  --font-size-5xl: 3rem;       /* 48px */
+
+  /* Line Heights */
+  --line-height-tight: 1.25;
+  --line-height-snug: 1.375;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.625;
+
+  /* Font Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* ==========================================================================
+     Spacing Scale
+     ========================================================================== */
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+
+  /* ==========================================================================
+     Border Radii
+     ========================================================================== */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+
+  /* ==========================================================================
+     Subtle Box Shadows (Clean, restrained medical UI)
+     ========================================================================== */
+  --shadow-xs: 0 1px 2px 0 rgba(15, 23, 42, 0.04);
+  --shadow-sm: 0 1px 3px 0 rgba(15, 23, 42, 0.05), 0 1px 2px -1px rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.06), 0 2px 4px -2px rgba(15, 23, 42, 0.04);
+  --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.07), 0 4px 6px -4px rgba(15, 23, 42, 0.03);
+
+  /* ==========================================================================
+     Standard Content Widths
+     ========================================================================== */
+  --container-max: 1200px;
+  --container-wide: 1280px;
+  --container-medium: 960px;
+  --container-reading: 720px;
+
+  /* ==========================================================================
+     Transitions & Motion
+     ========================================================================== */
+  --transition-duration-fast: 150ms;
+  --transition-duration-base: 200ms;
+  --transition-duration-slow: 300ms;
+  --transition-timing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ==========================================================================
+     Focus-Ring Styling
+     ========================================================================== */
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+  --focus-ring-color: var(--color-tb-primary);
+
+  /* ==========================================================================
+     Shared Z-Index Hierarchy
+     ========================================================================== */
+  --z-base: 0;
+  --z-elevated: 10;
+  --z-dropdown: 100;
+  --z-sticky: 500;
+  --z-header: 800;
+  --z-floating-cta: 900;
+  --z-modal-backdrop: 1000;
+  --z-modal: 1050;
+  --z-toast: 1200;
+}

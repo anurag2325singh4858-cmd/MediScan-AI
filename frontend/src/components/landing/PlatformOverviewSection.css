@@ -1,0 +1,273 @@
+/* ==========================================================================
+   Platform Overview Section Styles (Light Medical Theme)
+   ========================================================================== */
+
+.platform-overview {
+  background: linear-gradient(180deg, #f8fafc 0%, #edf6ff 50%, #f4f0ff 100%);
+  color: #101b3a;
+  padding: clamp(3.5rem, 6vw, 5.5rem) 0;
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+  cursor: default;
+}
+
+.platform-overview__ambient {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1000px;
+  height: 500px;
+  background: radial-gradient(ellipse at center, rgba(56, 189, 248, 0.15) 0%, rgba(244, 240, 255, 0) 70%);
+  pointer-events: none;
+}
+
+.platform-overview__container {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2.5rem, 5vw, 4rem);
+  position: relative;
+  z-index: 1;
+}
+
+/* Header */
+.platform-overview__header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.platform-overview__title {
+  font-size: clamp(2rem, 3.5vw, 2.65rem);
+  font-weight: 800;
+  color: #101b3a;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin: 0;
+}
+
+.platform-overview__title-accent {
+  color: #0284c7;
+}
+
+.platform-overview__subtitle {
+  font-size: clamp(0.95rem, 1.3vw, 1.1rem);
+  color: #475569;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Central Flow Container */
+.platform-overview__flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 980px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.platform-overview__branch {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  position: relative;
+}
+
+.platform-overview__branch--tb {
+  justify-content: flex-end;
+}
+
+.platform-overview__branch--dr {
+  justify-content: flex-start;
+}
+
+/* Image Cards */
+.platform-overview__image-card {
+  width: 120px;
+  height: 120px;
+  border-radius: 18px;
+  overflow: hidden;
+  background-color: #000000;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.15);
+  flex-shrink: 0;
+}
+
+.platform-overview__image-card--tb {
+  border: 2px solid #38bdf8;
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.35);
+}
+
+.platform-overview__image-card--dr {
+  border: 2px solid #ea580c;
+  box-shadow: 0 0 20px rgba(234, 88, 12, 0.35);
+}
+
+.platform-overview__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Branch Info & Labels */
+.platform-overview__branch-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: absolute;
+  top: -34px;
+}
+
+.platform-overview__branch-info--tb {
+  right: 40px;
+}
+
+.platform-overview__branch-info--dr {
+  left: 40px;
+}
+
+.platform-overview__branch-icon {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.platform-overview__branch-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.platform-overview__branch-icon--tb {
+  color: #0284c7;
+}
+
+.platform-overview__branch-icon--dr {
+  color: #ea580c;
+}
+
+.platform-overview__branch-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.platform-overview__branch-name {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #101b3a;
+  line-height: 1.2;
+}
+
+.platform-overview__branch-sub {
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: #64748b;
+}
+
+/* Connecting Line */
+.platform-overview__line {
+  height: 3px;
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.platform-overview__line--tb {
+  background: linear-gradient(90deg, #38bdf8 0%, #0284c7 100%);
+}
+
+.platform-overview__line--dr {
+  background: linear-gradient(90deg, #f97316 0%, #ea580c 100%);
+}
+
+.platform-overview__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.platform-overview__dot--tb {
+  right: 0;
+  background-color: #0284c7;
+  box-shadow: 0 0 8px #0284c7;
+}
+
+.platform-overview__dot--dr {
+  left: 0;
+  background-color: #ea580c;
+  box-shadow: 0 0 8px #ea580c;
+}
+
+/* Central Hub Node */
+.platform-overview__hub {
+  width: 140px;
+  height: 140px;
+  background: #ffffff;
+  border-radius: 50%;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08), 0 0 0 8px rgba(255, 255, 255, 0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  z-index: 2;
+  flex-shrink: 0;
+  margin: 0 0.5rem;
+}
+
+.platform-overview__hub-logo {
+  width: 44px;
+  height: 32px;
+}
+
+.platform-overview__hub-logo svg {
+  width: 100%;
+  height: 100%;
+}
+
+.platform-overview__hub-title {
+  font-size: 0.88rem;
+  letter-spacing: -0.02em;
+}
+
+.platform-overview__hub-brand {
+  font-weight: 800;
+  color: #101b3a;
+}
+
+.platform-overview__hub-ai {
+  font-weight: 800;
+  color: #0284c7;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .platform-overview__flow {
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .platform-overview__branch {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .platform-overview__line {
+    display: none;
+  }
+
+  .platform-overview__branch-info {
+    position: static;
+    margin-left: 1rem;
+  }
+}

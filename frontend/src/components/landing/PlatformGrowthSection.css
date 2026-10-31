@@ -1,0 +1,187 @@
+/* ==========================================================================
+   A Platform Designed to Grow Section Styles
+   ========================================================================== */
+
+.growth-section {
+  padding: 1rem 0;
+  position: relative;
+  user-select: none;
+}
+
+.growth-card {
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  border-radius: 28px;
+  box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.05);
+  padding: clamp(2rem, 3.5vw, 2.75rem) clamp(2rem, 4vw, 3.5rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.5rem;
+  max-width: 1060px;
+  margin: 0 auto;
+}
+
+.growth-card__content {
+  flex: 1;
+  max-width: 480px;
+}
+
+.growth-card__title {
+  font-size: clamp(2rem, 3.2vw, 2.6rem);
+  font-weight: 800;
+  color: #101b3a;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin: 0 0 1rem;
+}
+
+.growth-card__title-accent {
+  color: #0284c7;
+}
+
+.growth-card__description {
+  font-size: clamp(0.98rem, 1.25vw, 1.1rem);
+  line-height: 1.6;
+  color: #475569;
+  margin: 0;
+}
+
+/* ==========================================================================
+   Modality Badges Layout
+   ========================================================================== */
+
+.growth-card__modalities {
+  flex: 1.2;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+.growth-card__group {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.growth-card__divider {
+  width: 1px;
+  height: 48px;
+  background-color: #cbd5e1;
+  margin: 0 0.25rem;
+}
+
+/* Individual Modality Badge */
+.growth-modality-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 10px 12px;
+  border-radius: 14px;
+  min-width: 82px;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+  transition: transform 0.2s ease;
+  user-select: none;
+}
+
+.growth-modality-badge--tb {
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+}
+
+.growth-modality-badge--dr {
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+}
+
+.growth-modality-badge--future {
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+}
+
+.growth-modality-badge__icon-wrap {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 6px;
+}
+
+.growth-modality-badge__icon-wrap svg {
+  width: 24px;
+  height: 24px;
+}
+
+.growth-modality-badge__icon-wrap--future svg {
+  opacity: 0.85;
+}
+
+.growth-modality-badge__info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.growth-modality-badge__name {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #101b3a;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.growth-modality-badge__status {
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.growth-modality-badge__status--tb {
+  color: #0284c7;
+}
+
+.growth-modality-badge__status--dr {
+  color: #ea580c;
+}
+
+.growth-modality-badge__status--future {
+  color: #0284c7;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .growth-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .growth-card__content {
+    max-width: 100%;
+  }
+
+  .growth-card__modalities {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 600px) {
+  .growth-card__divider {
+    display: none;
+  }
+
+  .growth-card__group {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .growth-modality-badge {
+    min-width: 74px;
+    padding: 8px 10px;
+  }
+}

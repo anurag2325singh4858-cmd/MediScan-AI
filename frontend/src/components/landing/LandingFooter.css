@@ -1,0 +1,174 @@
+/* ==========================================================================
+   Landing Footer Styles (Simple, Slightly Darker Light Blue-Gray)
+   ========================================================================== */
+
+.landing-footer {
+  background-color: #E5EEFC;
+  border-top: 1px solid #bfdbfe;
+  color: #101b3a;
+  padding: 2.25rem 0;
+  user-select: none;
+}
+
+.landing-footer__container {
+  display: flex;
+  flex-direction: column;
+  /* Generous right padding ensures floating Get Started CTA never overlaps any footer text or links */
+  padding-right: clamp(1rem, 16vw, 190px);
+}
+
+/* Horizontal Main Layout */
+.landing-footer__main {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: clamp(1.5rem, 3.5vw, 3.5rem);
+  flex-wrap: wrap;
+}
+
+.landing-footer__col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Column 1: Brand */
+.landing-footer__col--brand {
+  max-width: 280px;
+}
+
+.landing-footer__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  cursor: pointer;
+}
+
+.landing-footer__m-logo {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.landing-footer__logo-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  background: #0284c7;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 1.25rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.landing-footer__plus {
+  margin-top: -1px;
+}
+
+.landing-footer__brand-text {
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+}
+
+.landing-footer__brand-name {
+  font-weight: 800;
+  color: #101b3a;
+}
+
+.landing-footer__brand-ai {
+  font-weight: 800;
+  color: #0284c7;
+}
+
+.landing-footer__tagline {
+  font-size: 0.82rem;
+  color: #475569;
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* Vertical Divider Lines */
+.landing-footer__divider {
+  width: 1px;
+  height: 48px;
+  background-color: #cbd5e1;
+}
+
+/* Column 2: Nav (Home, Screening, How it works side-by-side) */
+.landing-footer__col--nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.landing-footer__link {
+  background: none;
+  border: none;
+  padding: 4px 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #475569;
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.landing-footer__link:hover {
+  color: #0284c7;
+}
+
+/* Column 3: Workflows (Positioned gracefully next to nav with no risk of CTA overlap) */
+.landing-footer__col--workflows {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-right: auto;
+}
+
+.landing-footer__wf-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  padding: 2px 0;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #334155;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.landing-footer__wf-link:hover {
+  color: #0f172a;
+}
+
+.landing-footer__wf-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.landing-footer__wf-icon--tb {
+  color: #0284c7;
+}
+
+.landing-footer__wf-icon--dr {
+  color: #ea580c;
+}
+
+/* Responsive */
+@media (max-width: 860px) {
+  .landing-footer__divider {
+    display: none;
+  }
+  .landing-footer__main {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+}

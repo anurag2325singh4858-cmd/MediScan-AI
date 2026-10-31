@@ -1,0 +1,449 @@
+/**
+ * MediScan AI — Hero Section Styles
+ * Faithfully reproducing the approved landing-page reference composition
+ */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  padding: var(--space-8) 0 var(--space-12) 0;
+  min-height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+}
+
+.hero__container {
+  position: relative;
+  z-index: var(--z-elevated);
+}
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+/* ==========================================================================
+   Left Column: Headline, Supporting Copy, and Coral Get Started CTA
+   ========================================================================== */
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  max-width: 540px;
+}
+
+/* Decorative AI Constellation Background */
+.hero__constellation {
+  position: absolute;
+  top: -40px;
+  left: -60px;
+  width: 420px;
+  height: 380px;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.85;
+}
+
+.hero__constellation-line {
+  stroke: #bae6fd;
+  stroke-width: 1.25;
+  stroke-dasharray: 4 2;
+  opacity: 0.6;
+}
+
+.hero__constellation-node {
+  fill: #0284c7;
+  opacity: 0.35;
+  transition: opacity 0.3s ease;
+}
+
+.hero__constellation-node--pulse {
+  animation: constellationPulse 4s ease-in-out infinite alternate;
+}
+
+/* Main Headline */
+.hero__headline {
+  margin: 0 0 var(--space-5) 0;
+  font-family: var(--font-sans);
+  font-size: clamp(2.4rem, 4.2vw, 3.6rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: #0d1b3e; /* Deep navy matching reference */
+}
+
+.hero__headline-line {
+  display: block;
+}
+
+.hero__headline-line--1 {
+  animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+}
+
+.hero__headline-line--2 {
+  animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+}
+
+/* Coral / Orange Accent Word ("Tomorrows.") */
+.hero__headline-accent {
+  background: linear-gradient(135deg, #ff6b4a 0%, #ea580c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+/* Supporting Copy */
+.hero__subtitle {
+  font-family: var(--font-sans);
+  font-size: clamp(1rem, 1.3vw, 1.125rem);
+  line-height: 1.55;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-8);
+  max-width: 420px;
+  animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+}
+
+/* Call to Action Wrapper & Button */
+.hero__cta-wrapper {
+  animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero__cta-wrapper--hidden {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transform: translateY(-8px) scale(0.96) !important;
+}
+
+.hero__cta-btn {
+  background: linear-gradient(135deg, #ff6b4a 0%, #ea580c 100%) !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: var(--radius-full) !important;
+  padding: 14px 34px !important;
+  font-size: 1.05rem !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.01em;
+  box-shadow: 0 10px 25px -4px rgba(234, 88, 12, 0.45), 0 4px 10px -2px rgba(234, 88, 12, 0.25) !important;
+  transition: 
+    transform var(--transition-duration-fast) var(--transition-timing-standard),
+    box-shadow var(--transition-duration-fast) var(--transition-timing-standard),
+    filter var(--transition-duration-fast) var(--transition-timing-standard) !important;
+}
+
+.hero__cta-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  filter: brightness(1.04);
+  box-shadow: 0 14px 30px -4px rgba(234, 88, 12, 0.55), 0 6px 12px -2px rgba(234, 88, 12, 0.35) !important;
+}
+
+.hero__cta-btn:active:not(:disabled) {
+  transform: translateY(1px) scale(0.98);
+}
+
+.hero__cta-arrow {
+  display: inline-block;
+  margin-left: var(--space-1);
+  font-size: 1.2rem;
+  transition: transform var(--transition-duration-fast) var(--transition-timing-standard);
+}
+
+.hero__cta-btn:hover .hero__cta-arrow {
+  transform: translateX(4px);
+}
+
+/* ==========================================================================
+   Right Column: Medical Professional & Medical-Imaging Graphics
+   ========================================================================== */
+
+.hero__visual-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1200px;
+  animation: heroFadeScale 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+}
+
+/* Atmospheric Ambient Halos */
+.hero__halo {
+  position: absolute;
+  border-radius: var(--radius-full);
+  filter: blur(55px);
+  pointer-events: none;
+  z-index: 0;
+  transition: transform 0.4s ease-out;
+}
+
+.hero__halo--blue {
+  top: 5%;
+  right: 15%;
+  width: 330px;
+  height: 330px;
+  background: radial-gradient(circle, rgba(2, 132, 199, 0.16) 0%, rgba(224, 242, 254, 0.05) 70%, transparent 100%);
+  animation: haloPulseBlue 9s ease-in-out infinite alternate;
+}
+
+.hero__halo--coral {
+  bottom: 8%;
+  left: 6%;
+  width: 290px;
+  height: 290px;
+  background: radial-gradient(circle, rgba(234, 88, 12, 0.13) 0%, rgba(255, 237, 213, 0.04) 70%, transparent 100%);
+  animation: haloPulseCoral 10s ease-in-out 1s infinite alternate;
+}
+
+/* Doctor & Floating Graphics Image Wrapper */
+.hero__visual-wrapper {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 580px;
+  transform: translate3d(var(--parallax-x, 0px), var(--parallax-y, 0px), 0)
+             rotateX(var(--tilt-x, 0deg))
+             rotateY(var(--tilt-y, 0deg));
+  transition: transform 0.35s cubic-bezier(0.2, 0, 0, 1);
+  animation: heroGentleFloat 7s ease-in-out 1.2s infinite alternate;
+  will-change: transform;
+}
+
+/* Localized seamless blend precisely concealing the upper-edge text fragment */
+.hero__visual-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 4.8%;
+  left: 30.5%;
+  width: 6%;
+  height: 2%;
+  background: radial-gradient(ellipse at center, #ffffff 50%, rgba(255, 255, 255, 0.9) 80%, rgba(255, 255, 255, 0) 100%);
+  filter: blur(1.5px);
+  pointer-events: none;
+  z-index: 4;
+}
+
+.hero__visual-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  /* Blends cleanly into the white page background without rectangular borders or shadows */
+  background-color: transparent;
+}
+
+/* Subtle Interactive Scanning Pulse Overlays */
+.hero__pulse-point {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.hero__pulse-point::after {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border-radius: var(--radius-full);
+  border: 1.5px solid currentColor;
+  animation: beaconPulse 3.5s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+}
+
+/* Pulse on Retinal Fundus card area */
+.hero__pulse-point--retina {
+  top: 47%;
+  left: 25%;
+  color: #ea580c;
+  background-color: #ea580c;
+  box-shadow: 0 0 8px rgba(234, 88, 12, 0.6);
+}
+
+.hero__pulse-point--retina::after {
+  animation-delay: 0s;
+}
+
+/* Pulse on Chest X-Ray card area */
+.hero__pulse-point--xray {
+  top: 25%;
+  left: 30%;
+  color: #0284c7;
+  background-color: #0284c7;
+  box-shadow: 0 0 8px rgba(2, 132, 199, 0.6);
+}
+
+.hero__pulse-point--xray::after {
+  animation-delay: 1.75s;
+}
+
+/* ==========================================================================
+   Keyframe Animations
+   ========================================================================== */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroFadeScale {
+  from {
+    opacity: 0;
+    transform: scale(0.97) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes heroGentleFloat {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-7px);
+  }
+}
+
+@keyframes haloPulseBlue {
+  0% {
+    transform: scale(0.96);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1.06);
+    opacity: 0.85;
+  }
+}
+
+@keyframes haloPulseCoral {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.55;
+  }
+  100% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+@keyframes constellationPulse {
+  0% {
+    opacity: 0.25;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 0.55;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes beaconPulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.9;
+  }
+  65% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .hero {
+    padding: var(--space-6) 0 var(--space-10) 0;
+    min-height: auto;
+  }
+
+  .hero__grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: var(--space-10);
+  }
+
+  .hero__content {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero__constellation {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .hero__subtitle {
+    max-width: 520px;
+  }
+
+  .hero__visual-wrapper {
+    max-width: 480px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding: var(--space-4) 0 var(--space-8) 0;
+  }
+
+  .hero__headline {
+    font-size: 2.2rem;
+  }
+
+  .hero__subtitle {
+    font-size: 0.95rem;
+    margin-bottom: var(--space-6);
+  }
+
+  .hero__cta-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 24px !important;
+  }
+
+  .hero__visual-wrapper {
+    max-width: 340px;
+  }
+}
+
+/* ==========================================================================
+   Reduced Motion Preferences
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__headline-line--1,
+  .hero__headline-line--2,
+  .hero__subtitle,
+  .hero__cta-wrapper,
+  .hero__visual-container,
+  .hero__visual-wrapper,
+  .hero__halo,
+  .hero__constellation-node--pulse,
+  .hero__pulse-point::after {
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}

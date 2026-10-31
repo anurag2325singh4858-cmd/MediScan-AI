@@ -1,0 +1,355 @@
+/**
+ * MediScan AI — Screening Section Styles
+ * Dual workflow cards (TB Blue & DR Coral) with medical illustrations and scanlines
+ */
+
+.screening-section {
+  padding: clamp(3.5rem, 6vw, 6rem) 0;
+  background-color: #ffffff;
+  scroll-margin-top: 5.5rem;
+  position: relative;
+}
+
+.screening-section__container {
+  position: relative;
+  z-index: 1;
+}
+
+/* ==========================================================================
+   Section Header
+   ========================================================================== */
+
+.screening-section__header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto clamp(2.5rem, 4vw, 3.5rem);
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.screening-section--visible .screening-section__header {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.screening-section__badge {
+  margin-bottom: var(--space-3);
+}
+
+.screening-section__title {
+  font-family: var(--font-sans);
+  font-size: clamp(1.75rem, 3vw, 2.35rem);
+  font-weight: 750;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  color: #0d1b3e; /* Dark navy */
+  margin-bottom: var(--space-3);
+}
+
+.screening-section__subtitle {
+  font-family: var(--font-sans);
+  font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   Dual Workflow Cards Grid
+   ========================================================================== */
+
+.screening-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  align-items: stretch;
+}
+
+.screening-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: var(--radius-xl);
+  background-color: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.25s ease;
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.screening-section--visible .screening-card--tb {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s,
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
+}
+
+.screening-section--visible .screening-card--dr {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s,
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+}
+
+.screening-card:hover {
+  transform: translateY(-4px);
+}
+
+.screening-card--tb:hover {
+  box-shadow: 0 12px 30px -4px rgba(2, 132, 199, 0.12);
+  border-color: var(--color-tb-border);
+}
+
+.screening-card--dr:hover {
+  box-shadow: 0 12px 30px -4px rgba(234, 88, 12, 0.12);
+  border-color: var(--color-dr-border);
+}
+
+/* Card Top Header */
+.screening-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-4);
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.screening-card__badges {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.screening-card__modality-pill {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-tb-primary);
+  background-color: var(--color-tb-tint);
+  border: 1px solid var(--color-tb-border);
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-full);
+}
+
+.screening-card__modality-pill--dr {
+  color: var(--color-dr-primary);
+  background-color: var(--color-dr-tint);
+  border-color: var(--color-dr-border);
+}
+
+/* ==========================================================================
+   Medical Illustration Viewport & Scan Animations
+   ========================================================================== */
+
+.screening-card__visual-container {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: var(--space-5);
+  position: relative;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  background-color: #0c1a32;
+}
+
+.screening-card__visual-container--dr {
+  background-color: #1c0f0a;
+}
+
+.screening-card__svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  aspect-ratio: 16 / 9;
+}
+
+/* Scanline Animation */
+.screening-card__scanline {
+  animation: scanlineSweep 3.5s ease-in-out infinite;
+  opacity: 0.8;
+}
+
+.screening-card__scanline--dr {
+  animation: scanlineSweepDR 3.5s ease-in-out infinite;
+  opacity: 0.8;
+}
+
+@keyframes scanlineSweep {
+  0% {
+    transform: translateY(0);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translateY(140px);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 0.2;
+  }
+}
+
+@keyframes scanlineSweepDR {
+  0% {
+    transform: translateY(0);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translateY(130px);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 0.2;
+  }
+}
+
+/* Annotation Pulse */
+.screening-card__annotation-box {
+  animation: annotationPulse 2.8s ease-in-out infinite alternate;
+}
+
+@keyframes annotationPulse {
+  0% {
+    opacity: 0.85;
+    transform: scale(0.99);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.01);
+  }
+}
+
+/* ==========================================================================
+   Card Body Content
+   ========================================================================== */
+
+.screening-card__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.screening-card__title {
+  font-family: var(--font-sans);
+  font-size: 1.4rem;
+  font-weight: 750;
+  letter-spacing: -0.025em;
+  color: #0d1b3e;
+  margin-bottom: var(--space-2);
+}
+
+.screening-card__desc {
+  font-family: var(--font-sans);
+  font-size: 0.925rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-4);
+}
+
+.screening-card__features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.screening-card__feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: var(--color-text-secondary);
+}
+
+.screening-card__check-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-tb-subtle);
+  color: var(--color-tb-primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.screening-card__check-icon--dr {
+  background-color: var(--color-dr-subtle);
+  color: var(--color-dr-primary);
+}
+
+/* Disclaimer Box */
+.screening-card__disclaimer {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-3);
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-md);
+  font-family: var(--font-sans);
+  font-size: 0.775rem;
+  line-height: 1.4;
+  color: var(--color-text-muted);
+  margin-top: auto;
+  margin-bottom: var(--space-4);
+}
+
+.screening-card__disclaimer-icon {
+  color: var(--color-tb-primary);
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.screening-card--dr .screening-card__disclaimer-icon {
+  color: var(--color-dr-primary);
+}
+
+.screening-card__action {
+  margin-top: auto;
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+
+@media (max-width: 960px) {
+  .screening-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .screening-card {
+    max-width: 580px;
+    margin: 0 auto;
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .screening-section__header,
+  .screening-card {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .screening-card__scanline,
+  .screening-card__scanline--dr,
+  .screening-card__annotation-box {
+    animation: none !important;
+  }
+}

@@ -1,0 +1,691 @@
+/**
+ * MediScan AI — Tuberculosis Image Upload Page Styles
+ * Matches the reference image layout, two-column cards, guidelines, and blue TB theme
+ */
+
+.tb-upload-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ==========================================================================
+   Background Decorative Elements (Faint Pulmonary Line-Art)
+   ========================================================================== */
+
+.tb-upload-bg-decor {
+  position: absolute;
+  top: 12%;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  width: clamp(260px, 30vw, 420px);
+  height: auto;
+  opacity: 0.1;
+}
+
+.tb-upload-bg-decor--left {
+  left: -30px;
+}
+
+.tb-upload-bg-decor--right {
+  right: -30px;
+}
+
+.tb-upload-bg-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ==========================================================================
+   Main Content Area & Container
+   ========================================================================== */
+
+.tb-upload-content {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  padding: clamp(2rem, 4vw, 3.5rem) 0 clamp(3.5rem, 5vw, 5rem);
+  animation: uploadFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.tb-upload-container {
+  max-width: 1024px;
+}
+
+/* ==========================================================================
+   Heading Group & Workflow Badge
+   ========================================================================== */
+
+.tb-upload-heading-group {
+  margin-bottom: clamp(1.75rem, 3.5vw, 2.5rem);
+}
+
+.tb-upload-title {
+  font-family: var(--font-sans);
+  font-size: clamp(1.75rem, 3.2vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #0d1b3e; /* Dark navy */
+  margin-bottom: 0.85rem;
+  line-height: 1.2;
+  -webkit-font-smoothing: antialiased;
+}
+
+.tb-upload-workflow-row {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.tb-upload-workflow-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem 0.35rem 0.5rem;
+  background-color: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: var(--radius-full);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+}
+
+.tb-upload-workflow-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.tb-upload-workflow-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.tb-upload-workflow-text {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 650;
+  color: #0d1b3e;
+}
+
+/* ==========================================================================
+   Error Alert Banner
+   ========================================================================== */
+
+.tb-upload-error-alert {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background-color: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-radius: var(--radius-lg);
+  margin-bottom: 1.5rem;
+  animation: errorSlideDown 0.25s ease-out both;
+}
+
+.tb-upload-error-icon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.tb-upload-error-text {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 550;
+  color: #b91c1c;
+  flex: 1;
+}
+
+.tb-upload-error-close {
+  background: none;
+  border: none;
+  color: #b91c1c;
+  cursor: pointer;
+  font-size: 0.85rem;
+  padding: 0.25rem;
+}
+
+@keyframes errorSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   Two-Column Grid Layout
+   ========================================================================== */
+
+.tb-upload-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: clamp(1.5rem, 3vw, 2.25rem);
+  align-items: stretch;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+/* ==========================================================================
+   Left Column: Upload Card & Dropzone
+   ========================================================================== */
+
+.tb-upload-card {
+  background-color: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  border-radius: 24px;
+  box-shadow: 0 8px 30px -4px rgba(15, 23, 42, 0.04);
+  padding: clamp(1.5rem, 2.5vw, 2rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 400px;
+}
+
+.tb-upload-hidden-input {
+  display: none;
+}
+
+.tb-upload-dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #f7fbff;
+  border: 2px dashed #93c5fd;
+  border-radius: 18px;
+  padding: clamp(2.5rem, 4.5vw, 3.75rem) 1.5rem;
+  cursor: pointer;
+  transition: background-color var(--transition-duration-fast) ease,
+              border-color var(--transition-duration-fast) ease,
+              transform var(--transition-duration-fast) ease;
+  outline: none;
+}
+
+.tb-upload-dropzone:hover,
+.tb-upload-dropzone--dragging {
+  background-color: #eef6ff;
+  border-color: #0284c7;
+  transform: scale(1.005);
+}
+
+.tb-upload-dropzone:focus-visible {
+  outline: 2px solid var(--color-tb-primary);
+  outline-offset: 3px;
+}
+
+.tb-upload-cloud-circle {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background-color: #e0f0fe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0284c7;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 2px 10px rgba(2, 132, 199, 0.08);
+  transition: transform var(--transition-duration-fast) ease;
+}
+
+.tb-upload-dropzone:hover .tb-upload-cloud-circle {
+  transform: translateY(-2px);
+}
+
+.tb-upload-cloud-icon {
+  width: 38px;
+  height: 38px;
+}
+
+.tb-upload-dropzone-title {
+  font-family: var(--font-sans);
+  font-size: clamp(1.15rem, 2vw, 1.35rem);
+  font-weight: 750;
+  color: #0d1b3e;
+  margin: 0 0 0.35rem 0;
+}
+
+.tb-upload-dropzone-divider {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: #94a3b8;
+  margin-bottom: 1rem;
+}
+
+.tb-upload-browse-btn {
+  background-color: #0066ff;
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-full);
+  padding: 0.8rem 2.25rem;
+  font-family: var(--font-sans);
+  font-size: 0.975rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 102, 255, 0.25);
+  transition: background-color var(--transition-duration-fast) ease,
+              transform var(--transition-duration-fast) ease,
+              box-shadow var(--transition-duration-fast) ease;
+  margin-bottom: 1rem;
+  outline: none;
+}
+
+.tb-upload-browse-btn:hover {
+  background-color: #0052cc;
+  box-shadow: 0 6px 18px rgba(0, 102, 255, 0.35);
+  transform: translateY(-1px);
+}
+
+.tb-upload-browse-btn:focus-visible {
+  outline: 2px solid #0052cc;
+  outline-offset: 2px;
+}
+
+.tb-upload-dropzone-formats {
+  font-family: var(--font-sans);
+  font-size: 0.775rem;
+  color: #94a3b8;
+  margin: 0;
+}
+
+/* ==========================================================================
+   Selected File Preview State
+   ========================================================================== */
+
+.tb-upload-selected-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  animation: previewFadeIn 0.3s ease-out both;
+}
+
+.tb-upload-selected-preview-box {
+  width: 100%;
+  max-width: 280px;
+  height: 220px;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #0c1a32;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+}
+
+.tb-upload-selected-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.tb-upload-selected-placeholder {
+  font-size: 3rem;
+}
+
+.tb-upload-selected-details {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.85rem;
+}
+
+.tb-upload-selected-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.tb-upload-selected-filename {
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0d1b3e;
+  word-break: break-all;
+  max-width: 320px;
+}
+
+.tb-upload-selected-filesize {
+  font-family: var(--font-sans);
+  font-size: 0.825rem;
+  color: #64748b;
+}
+
+.tb-upload-selected-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-sans);
+  font-size: 0.775rem;
+  font-weight: 600;
+  color: #16a34a;
+  background-color: #dcfce7;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+  margin-top: 0.25rem;
+}
+
+.tb-upload-selected-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #16a34a;
+}
+
+.tb-upload-selected-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.tb-upload-replace-btn {
+  background-color: #ffffff;
+  color: #0284c7;
+  border: 1px solid #bae6fd;
+  border-radius: var(--radius-full);
+  padding: 0.5rem 1.25rem;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-duration-fast) ease;
+}
+
+.tb-upload-replace-btn:hover {
+  background-color: #f0f9ff;
+  border-color: #0284c7;
+}
+
+.tb-upload-remove-btn {
+  background: none;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+  border-radius: var(--radius-full);
+  padding: 0.5rem 1.25rem;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-duration-fast) ease;
+}
+
+.tb-upload-remove-btn:hover {
+  background-color: #fee2e2;
+  border-color: #dc2626;
+}
+
+/* ==========================================================================
+   Right Column: Image Guidelines Card
+   ========================================================================== */
+
+.tb-guidelines-card {
+  background-color: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  border-radius: 24px;
+  box-shadow: 0 8px 30px -4px rgba(15, 23, 42, 0.04);
+  padding: clamp(1.5rem, 2.5vw, 2rem);
+  display: flex;
+  flex-direction: column;
+}
+
+.tb-guidelines-title {
+  font-family: var(--font-sans);
+  font-size: 1.25rem;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  color: #0d1b3e;
+  margin-bottom: 1.5rem;
+}
+
+.tb-guidelines-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.75rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.65rem;
+}
+
+.tb-guidelines-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.35rem 0.85rem 0.35rem 0.5rem;
+  background-color: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: var(--radius-full);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+  transition: border-color var(--transition-duration-fast) ease,
+              box-shadow var(--transition-duration-fast) ease,
+              transform var(--transition-duration-fast) ease;
+}
+
+.tb-guidelines-item:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.06);
+  transform: translateX(2px);
+}
+
+.tb-guidelines-icon-box {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.tb-guidelines-icon-box--blue {
+  background-color: #e0f2fe;
+  color: #0284c7;
+}
+
+.tb-guidelines-icon-box--amber {
+  background-color: #fef3c7;
+  color: #d97706;
+}
+
+.tb-guidelines-icon {
+  width: 14px;
+  height: 14px;
+}
+
+.tb-guidelines-text {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 650;
+  color: #0d1b3e;
+  line-height: 1.3;
+}
+
+/* Example Image Panel at bottom */
+.tb-example-panel {
+  background-color: #f1f7fe;
+  border-radius: 16px;
+  padding: 1.15rem;
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.tb-example-label {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #0d1b3e;
+}
+
+.tb-example-img-wrapper {
+  width: 100%;
+  max-width: 120px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.1);
+  background-color: #000000;
+}
+
+.tb-example-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* ==========================================================================
+   Bottom Action Bar (Back & Continue Buttons)
+   ========================================================================== */
+
+.tb-upload-actions-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.tb-upload-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #ffffff;
+  color: #0d1b3e;
+  border: 1px solid #cbd5e1;
+  border-radius: var(--radius-full);
+  padding: 0.8rem 2rem;
+  font-family: var(--font-sans);
+  font-size: 0.975rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-duration-fast) ease;
+}
+
+.tb-upload-back-btn:hover {
+  background-color: #f8fafc;
+  border-color: #94a3b8;
+}
+
+.tb-upload-back-btn:focus-visible {
+  outline: 2px solid var(--color-tb-primary);
+  outline-offset: 2px;
+}
+
+.tb-upload-continue-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #e2e8f0; /* Disabled muted gray matching reference */
+  color: #94a3b8;
+  border: none;
+  border-radius: var(--radius-full);
+  padding: 0.8rem 2.25rem;
+  font-family: var(--font-sans);
+  font-size: 0.975rem;
+  font-weight: 600;
+  cursor: not-allowed;
+  transition: all var(--transition-duration-fast) ease;
+}
+
+.tb-upload-continue-btn--active {
+  background-color: #0066ff;
+  color: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 102, 255, 0.25);
+}
+
+.tb-upload-continue-btn--active:hover {
+  background-color: #0052cc;
+  box-shadow: 0 6px 18px rgba(0, 102, 255, 0.35);
+  transform: translateY(-1px);
+}
+
+.tb-upload-continue-btn:focus-visible {
+  outline: 2px solid #0052cc;
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+
+@media (max-width: 860px) {
+  .tb-upload-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .tb-upload-bg-decor {
+    width: 160px;
+    opacity: 0.05;
+  }
+}
+
+@media (max-width: 480px) {
+  .tb-upload-actions-bar {
+    flex-direction: column-reverse;
+    width: 100%;
+  }
+
+  .tb-upload-back-btn,
+  .tb-upload-continue-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tb-upload-content,
+  .tb-upload-selected-card,
+  .tb-upload-error-alert {
+    animation: none !important;
+  }
+
+  .tb-upload-dropzone,
+  .tb-upload-browse-btn,
+  .tb-upload-continue-btn {
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+@keyframes uploadFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes previewFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

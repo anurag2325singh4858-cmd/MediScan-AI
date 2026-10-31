@@ -1,0 +1,727 @@
+/**
+ * MediScan AI — Diabetic Retinopathy Image Upload Page Styles
+ * Matching counterpart to the TB Upload page with warm DR orange/coral theme
+ */
+
+.dr-upload-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ==========================================================================
+   Background Decorative Elements (Faint Retinal Line-Art in Coral/Orange)
+   ========================================================================== */
+
+.dr-upload-bg-decor {
+  position: absolute;
+  top: 12%;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  width: clamp(260px, 30vw, 420px);
+  height: auto;
+  opacity: 0.12;
+}
+
+.dr-upload-bg-decor--left {
+  left: -30px;
+}
+
+.dr-upload-bg-decor--right {
+  right: -30px;
+}
+
+.dr-upload-bg-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ==========================================================================
+   Main Content Area & Container
+   ========================================================================== */
+
+.dr-upload-content {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  padding: clamp(2rem, 4vw, 3.5rem) 0 clamp(3.5rem, 5vw, 5rem);
+  animation: uploadFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.dr-upload-container {
+  max-width: 1024px;
+}
+
+/* ==========================================================================
+   Heading Group & Workflow Badge
+   ========================================================================== */
+
+.dr-upload-heading-group {
+  margin-bottom: clamp(1.75rem, 3.5vw, 2.5rem);
+}
+
+.dr-upload-title {
+  font-family: var(--font-sans);
+  font-size: clamp(1.75rem, 3.2vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #0d1b3e; /* Dark navy */
+  margin-bottom: 0.85rem;
+  line-height: 1.2;
+  -webkit-font-smoothing: antialiased;
+}
+
+.dr-upload-workflow-row {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.dr-upload-workflow-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem 0.35rem 0.5rem;
+  background-color: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: var(--radius-full);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+}
+
+.dr-upload-workflow-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.dr-upload-workflow-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.dr-upload-workflow-text {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 650;
+  color: #0d1b3e;
+}
+
+/* ==========================================================================
+   Error Alert Banner
+   ========================================================================== */
+
+.dr-upload-error-alert {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background-color: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-radius: var(--radius-lg);
+  margin-bottom: 1.5rem;
+  animation: errorSlideDown 0.25s ease-out both;
+}
+
+.dr-upload-error-icon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.dr-upload-error-text {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 550;
+  color: #b91c1c;
+  flex: 1;
+}
+
+.dr-upload-error-close {
+  background: none;
+  border: none;
+  color: #b91c1c;
+  cursor: pointer;
+  font-size: 0.85rem;
+  padding: 0.25rem;
+}
+
+/* ==========================================================================
+   Two-Column Grid Layout
+   ========================================================================== */
+
+.dr-upload-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: clamp(1.5rem, 3vw, 2.25rem);
+  align-items: stretch;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+/* ==========================================================================
+   Left Column: Upload Card & Dropzone (Warm DR Orange Palette)
+   ========================================================================== */
+
+.dr-upload-card {
+  background-color: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  border-radius: 24px;
+  box-shadow: 0 8px 30px -4px rgba(15, 23, 42, 0.04);
+  padding: clamp(1.5rem, 2.5vw, 2rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 400px;
+}
+
+.dr-upload-hidden-input {
+  display: none;
+}
+
+.dr-upload-dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #fffaf5;
+  border: 2px dashed #fdba74;
+  border-radius: 18px;
+  padding: clamp(2.5rem, 4.5vw, 3.75rem) 1.5rem;
+  cursor: pointer;
+  transition: background-color var(--transition-duration-fast) ease,
+              border-color var(--transition-duration-fast) ease,
+              transform var(--transition-duration-fast) ease;
+  outline: none;
+}
+
+.dr-upload-dropzone:hover,
+.dr-upload-dropzone--dragging {
+  background-color: #fff4ea;
+  border-color: #ea580c;
+  transform: scale(1.005);
+}
+
+.dr-upload-dropzone:focus-visible {
+  outline: 2px solid #ea580c;
+  outline-offset: 3px;
+}
+
+.dr-upload-cloud-circle {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background-color: #ffedd5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ea580c;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 2px 10px rgba(234, 88, 12, 0.1);
+  transition: transform var(--transition-duration-fast) ease;
+}
+
+.dr-upload-dropzone:hover .dr-upload-cloud-circle {
+  transform: translateY(-2px);
+}
+
+.dr-upload-cloud-icon {
+  width: 38px;
+  height: 38px;
+}
+
+.dr-upload-dropzone-title {
+  font-family: var(--font-sans);
+  font-size: clamp(1.15rem, 2vw, 1.35rem);
+  font-weight: 750;
+  color: #0d1b3e;
+  margin: 0 0 0.35rem 0;
+}
+
+.dr-upload-dropzone-divider {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: #94a3b8;
+  margin-bottom: 1rem;
+}
+
+.dr-upload-browse-btn {
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-full);
+  padding: 0.8rem 2.25rem;
+  font-family: var(--font-sans);
+  font-size: 0.975rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(234, 88, 12, 0.25);
+  transition: background-color var(--transition-duration-fast) ease,
+              transform var(--transition-duration-fast) ease,
+              box-shadow var(--transition-duration-fast) ease;
+  margin-bottom: 1rem;
+  outline: none;
+}
+
+.dr-upload-browse-btn:hover {
+  background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+  box-shadow: 0 6px 18px rgba(234, 88, 12, 0.35);
+  transform: translateY(-1px);
+}
+
+.dr-upload-browse-btn:focus-visible {
+  outline: 2px solid #ea580c;
+  outline-offset: 2px;
+}
+
+.dr-upload-dropzone-formats {
+  font-family: var(--font-sans);
+  font-size: 0.775rem;
+  color: #94a3b8;
+  margin: 0;
+}
+
+/* ==========================================================================
+   Selected File Preview State
+   ========================================================================== */
+
+.dr-upload-selected-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  animation: previewFadeIn 0.3s ease-out both;
+}
+
+.dr-upload-selected-preview-box {
+  width: 100%;
+  max-width: 280px;
+  height: 220px;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #0c1a32;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+}
+
+.dr-upload-selected-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.dr-upload-selected-placeholder {
+  font-size: 3rem;
+}
+
+.dr-upload-selected-details {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.85rem;
+}
+
+.dr-upload-selected-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.dr-upload-selected-filename {
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0d1b3e;
+  word-break: break-all;
+  max-width: 320px;
+}
+
+.dr-upload-selected-filesize {
+  font-family: var(--font-sans);
+  font-size: 0.825rem;
+  color: #64748b;
+}
+
+.dr-upload-selected-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-sans);
+  font-size: 0.775rem;
+  font-weight: 600;
+  color: #16a34a;
+  background-color: #dcfce7;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+  margin-top: 0.25rem;
+}
+
+.dr-upload-selected-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #16a34a;
+}
+
+.dr-upload-selected-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.dr-upload-replace-btn {
+  background-color: #ffffff;
+  color: #ea580c;
+  border: 1px solid #fed7aa;
+  border-radius: var(--radius-full);
+  padding: 0.5rem 1.25rem;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-duration-fast) ease;
+}
+
+.dr-upload-replace-btn:hover {
+  background-color: #fff7ed;
+  border-color: #ea580c;
+}
+
+.dr-upload-remove-btn {
+  background: none;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+  border-radius: var(--radius-full);
+  padding: 0.5rem 1.25rem;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-duration-fast) ease;
+}
+
+.dr-upload-remove-btn:hover {
+  background-color: #fee2e2;
+  border-color: #dc2626;
+}
+
+/* ==========================================================================
+   Right Column: Image Guidelines Card (Capsule Badges in DR Theme)
+   ========================================================================== */
+
+.dr-guidelines-card {
+  background-color: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  border-radius: 24px;
+  box-shadow: 0 8px 30px -4px rgba(15, 23, 42, 0.04);
+  padding: clamp(1.5rem, 2.5vw, 2rem);
+  display: flex;
+  flex-direction: column;
+}
+
+.dr-guidelines-title {
+  font-family: var(--font-sans);
+  font-size: 1.25rem;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  color: #0d1b3e;
+  margin-bottom: 1.5rem;
+}
+
+.dr-guidelines-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.75rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.65rem;
+}
+
+.dr-guidelines-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.35rem 0.85rem 0.35rem 0.5rem;
+  background-color: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: var(--radius-full);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+  transition: border-color var(--transition-duration-fast) ease,
+              box-shadow var(--transition-duration-fast) ease,
+              transform var(--transition-duration-fast) ease;
+}
+
+.dr-guidelines-item:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.06);
+  transform: translateX(2px);
+}
+
+.dr-guidelines-icon-box {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #ffedd5;
+  color: #ea580c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.dr-guidelines-icon {
+  width: 14px;
+  height: 14px;
+}
+
+.dr-guidelines-text {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 650;
+  color: #0d1b3e;
+  line-height: 1.3;
+}
+
+/* Example Image Panel at bottom (Pale Orange Retinal Theme) */
+.dr-example-panel {
+  background-color: #fff7ed;
+  border-radius: 16px;
+  padding: 1.15rem;
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.dr-example-label {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #0d1b3e;
+}
+
+.dr-example-img-wrapper {
+  width: 100%;
+  max-width: 120px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.1);
+  background-color: #000000;
+}
+
+.dr-example-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* ==========================================================================
+   Bottom Action Bar (Back & Continue Buttons)
+   ========================================================================== */
+
+.dr-upload-actions-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.dr-upload-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #ffffff;
+  color: #0d1b3e;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: var(--radius-full);
+  padding: 0.75rem 1.75rem;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+  transition: all var(--transition-duration-fast) ease;
+}
+
+.dr-upload-back-btn:hover {
+  background-color: #f8fafc;
+  border-color: #cbd5e1;
+  transform: translateX(-2px);
+}
+
+.dr-upload-back-btn:focus-visible {
+  outline: 2px solid #ea580c;
+  outline-offset: 2px;
+}
+
+.dr-upload-continue-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #e2e8f0;
+  color: #94a3b8;
+  border: none;
+  border-radius: var(--radius-full);
+  padding: 0.75rem 2rem;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: not-allowed;
+  transition: all var(--transition-duration-fast) ease;
+}
+
+.dr-upload-continue-btn--active {
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  color: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(234, 88, 12, 0.25);
+}
+
+.dr-upload-continue-btn--active:hover {
+  background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+  box-shadow: 0 6px 18px rgba(234, 88, 12, 0.35);
+  transform: translateY(-1px);
+}
+
+.dr-upload-continue-btn--active:focus-visible {
+  outline: 2px solid #ea580c;
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Animations
+   ========================================================================== */
+
+@keyframes uploadFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes previewFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes errorSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .dr-upload-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .dr-upload-card {
+    min-height: 360px;
+  }
+}
+
+@media (max-width: 640px) {
+  .dr-upload-content {
+    padding: 1.5rem 0 3rem;
+  }
+
+  .dr-upload-heading-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .dr-upload-title {
+    font-size: 1.6rem;
+  }
+
+  .dr-upload-dropzone {
+    padding: 2rem 1rem;
+  }
+
+  .dr-upload-cloud-circle {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 1rem;
+  }
+
+  .dr-upload-cloud-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .dr-upload-browse-btn {
+    padding: 0.7rem 1.75rem;
+    font-size: 0.9rem;
+  }
+
+  .dr-upload-actions-bar {
+    flex-direction: row;
+    gap: 0.75rem;
+  }
+
+  .dr-upload-back-btn,
+  .dr-upload-continue-btn {
+    flex: 1;
+    justify-content: center;
+    padding: 0.7rem 1.25rem;
+    font-size: 0.9rem;
+  }
+
+  .dr-upload-bg-decor {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dr-upload-content,
+  .dr-upload-selected-card,
+  .dr-upload-error-alert {
+    animation: none;
+  }
+
+  .dr-upload-dropzone,
+  .dr-upload-browse-btn,
+  .dr-upload-back-btn,
+  .dr-upload-continue-btn,
+  .dr-guidelines-item {
+    transition: none;
+  }
+}

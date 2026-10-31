@@ -1,0 +1,128 @@
+/* ==========================================================================
+   Screening Pipeline Section Styles (Light Medical Theme)
+   ========================================================================== */
+
+.pipeline-section {
+  background: linear-gradient(180deg, #f8faff 0%, #edf6ff 50%, #f4f0ff 100%);
+  color: #101b3a;
+  padding: clamp(3.5rem, 6vw, 5rem) 0;
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+  cursor: default;
+}
+
+.pipeline-section__container {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2rem, 4vw, 3rem);
+}
+
+.pipeline-section__header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.pipeline-section__title {
+  font-size: clamp(2rem, 3.5vw, 2.65rem);
+  font-weight: 800;
+  color: #101b3a;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+/* White Card Container */
+.pipeline-card-container {
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 24px;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+  max-width: 1040px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.pipeline-flow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+/* Individual Stage */
+.pipeline-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.5rem;
+}
+
+.pipeline-card__icon-box {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.25rem;
+}
+
+.pipeline-card__icon-box svg {
+  width: 26px;
+  height: 26px;
+}
+
+.pipeline-card__icon-box--blue {
+  background-color: #e0f2fe;
+  color: #0284c7;
+}
+
+.pipeline-card__icon-box--cyan {
+  background-color: #e0f7fa;
+  color: #0284c7;
+}
+
+.pipeline-card__icon-box--coral {
+  background-color: #ffedd5;
+  color: #ea580c;
+}
+
+.pipeline-card__title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #101b3a;
+  margin: 0;
+}
+
+.pipeline-card__action {
+  font-size: 0.80rem;
+  font-weight: 500;
+  color: #475569;
+  line-height: 1.35;
+  margin: 0;
+  max-width: 180px;
+}
+
+/* Connector Arrow */
+.pipeline-connector {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #38bdf8;
+  user-select: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .pipeline-flow {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .pipeline-connector {
+    transform: rotate(90deg);
+  }
+}

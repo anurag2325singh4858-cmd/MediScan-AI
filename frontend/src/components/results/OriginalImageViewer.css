@@ -1,0 +1,135 @@
+.original-image-viewer {
+  display: flex;
+  flex-direction: column;
+  background-color: #0b1120; /* Deep medical dark-room contrast background */
+  border: 1px solid var(--color-border-medium, #cbd5e1);
+  border-radius: var(--radius-lg, 16px);
+  overflow: hidden;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.12), 0 8px 10px -6px rgba(15, 23, 42, 0.08);
+}
+
+.original-image-viewer__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background-color: #0f172a;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.original-image-viewer__label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #f1f5f9;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.original-image-viewer__indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #10b981; /* Green ready status */
+  box-shadow: 0 0 8px #10b981;
+}
+
+.original-image-viewer__badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #94a3b8;
+  background-color: rgba(255, 255, 255, 0.06);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.original-image-viewer__viewport {
+  position: relative;
+  width: 100%;
+  max-height: 520px;
+  background-color: #020617;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.original-image-viewer__img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  user-select: none;
+}
+
+.original-image-viewer__img--visible {
+  opacity: 1;
+}
+
+.original-image-viewer__skeleton {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
+
+.original-image-viewer__spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-top-color: #38bdf8;
+  border-radius: 50%;
+  animation: viewerSpin 0.9s linear infinite;
+}
+
+@keyframes viewerSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.original-image-viewer__error {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+  color: #ef4444;
+}
+
+.original-image-viewer__error-icon {
+  width: 42px;
+  height: 42px;
+  stroke: #ef4444;
+  margin-bottom: 8px;
+}
+
+.original-image-viewer__error-title {
+  margin: 0 0 4px 0;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.original-image-viewer__error-text {
+  margin: 0;
+  font-size: 0.82rem;
+  color: #94a3b8;
+}
+
+.original-image-viewer__overlay-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none; /* Allows click-through unless interactive marker elements */
+}

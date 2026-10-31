@@ -1,0 +1,50 @@
+/* ==========================================================================
+   Reference Medical Imaging Section Styles
+   Displays the exact reference visual for:
+   - Medical Imaging. Clearer Insights.
+   - Available Screening Workflows
+   - More Than an Image
+   ========================================================================== */
+
+.ref-medical-imaging-section {
+  width: 100%;
+  padding: 1rem 0 3rem;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  user-select: none;
+}
+
+.ref-medical-imaging-container {
+  max-width: 1060px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+.ref-medical-imaging-img {
+  width: 100%;
+  height: auto;
+  max-width: 1060px;
+  display: block;
+  border-radius: 28px;
+  box-shadow: 0 12px 36px -8px rgba(15, 23, 42, 0.06);
+  user-select: none;
+  pointer-events: none;
+}
+
+@media (max-width: 640px) {
+  .ref-medical-imaging-section {
+    padding: 0.5rem 0 2rem;
+  }
+
+  .ref-medical-imaging-container {
+    padding: 0 0.5rem;
+  }
+
+  .ref-medical-imaging-img {
+    border-radius: 16px;
+  }
+}

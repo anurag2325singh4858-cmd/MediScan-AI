@@ -1,0 +1,136 @@
+/* ==========================================================================
+   How It Works 4-Step Flow Styles
+   ========================================================================== */
+
+.how-it-works-flow-section {
+  padding: 1.5rem 0 2.5rem;
+  position: relative;
+  user-select: none;
+}
+
+.how-it-works-flow-section__header {
+  text-align: left;
+  max-width: 1060px;
+  margin: 0 auto 1.25rem;
+}
+
+.how-it-works-flow-section__title {
+  font-size: clamp(2rem, 3.2vw, 2.6rem);
+  font-weight: 800;
+  color: #101b3a;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+.how-it-works-flow-section__title-accent {
+  color: #0284c7;
+}
+
+/* White Card Container */
+.how-it-works-flow-card {
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  border-radius: 28px;
+  box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.05);
+  padding: clamp(1.75rem, 3vw, 2.5rem) clamp(1.5rem, 3.5vw, 3rem);
+  max-width: 1060px;
+  margin: 0 auto;
+}
+
+.how-it-works-flow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+/* Individual Step */
+.how-it-works-step {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.how-it-works-step__icon-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+}
+
+.how-it-works-step__icon-circle--blue {
+  background: #f0f9ff;
+  border: 1.5px solid #bae6fd;
+}
+
+.how-it-works-step__icon-circle--coral {
+  background: #fff7ed;
+  border: 1.5px solid #fed7aa;
+}
+
+.how-it-works-step__icon-circle svg {
+  width: 24px;
+  height: 24px;
+}
+
+.how-it-works-step__content {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.how-it-works-step__title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #101b3a;
+  line-height: 1.2;
+}
+
+.how-it-works-step__desc {
+  font-size: 0.8rem;
+  color: #64748b;
+  line-height: 1.35;
+  max-width: 170px;
+}
+
+/* Arrow */
+.how-it-works-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.how-it-works-arrow svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .how-it-works-flow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.25rem;
+  }
+
+  .how-it-works-step {
+    gap: 1.25rem;
+  }
+
+  .how-it-works-step__desc {
+    max-width: 100%;
+  }
+
+  .how-it-works-arrow {
+    transform: rotate(90deg);
+    align-self: center;
+  }
+}
