@@ -21,18 +21,17 @@ services:
       - key: ENVIRONMENT
         value: production
       - key: ALLOWED_ORIGINS
-        # Update this value to match your exact deployed frontend URL on Render
         value: "https://mediscan-ai-frontend.onrender.com"
 
   # ----------------------------------------------------------------------------
   # 2. Frontend Static Site (React + Vite SPA)
   # ----------------------------------------------------------------------------
-  - type: static
+  - type: web
     name: mediscan-ai-frontend
+    runtime: static
     rootDir: frontend
     buildCommand: npm install && npm run build
     staticPublishPath: ./dist
-    plan: free
     routes:
       # Single-Page Application (SPA) client-side routing fallback
       - type: rewrite
@@ -40,5 +39,4 @@ services:
         destination: /index.html
     envVars:
       - key: VITE_API_URL
-        # Points to the deployed backend service URL on Render
         value: "https://mediscan-ai-backend.onrender.com"
