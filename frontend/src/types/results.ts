@@ -37,6 +37,11 @@ export interface FindingItem {
   category?: 'reference' | 'inspection' | 'highlighted';
 }
 
+export interface ObservationItem {
+  label: string;
+  value: string;
+}
+
 export interface ScreeningResultResponse {
   result_id: string;
   workflow: 'tb' | 'dr' | string;
@@ -48,6 +53,7 @@ export interface ScreeningResultResponse {
   scenario_id?: string;
   scenario_name?: string;
   findings: FindingItem[];
+  observations?: ObservationItem[];
   generated_at: string;
 }
 

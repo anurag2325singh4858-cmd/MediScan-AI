@@ -80,6 +80,15 @@ export const App: React.FC = () => {
       ? 'http://127.0.0.1:8000'
       : 'http://localhost:8000');
 
+  // Proactive background pre-warm: gently pings /health to wake up idle Render instances early
+  useEffect(() => {
+    if (apiUrl) {
+      fetch(`${apiUrl}/health`, { mode: 'cors' }).catch(() => {
+        // Silent catch during initial wake-up
+      });
+    }
+  }, [apiUrl]);
+
   // Handle browser Back / Forward navigation
   useEffect(() => {
     const handlePopState = (event: PopStateEvent) => {

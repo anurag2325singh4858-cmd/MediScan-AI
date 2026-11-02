@@ -384,7 +384,7 @@ def test_no_persistent_files_created_by_analysis():
 async def test_all_six_educational_scenarios():
     """Verify each of the 6 predefined educational scenarios can be generated correctly."""
     provider = TBSimulationProvider()
-    expected_counts = [2, 4, 2, 3, 3, 0]  # Scenario 1..6 marker counts
+    expected_counts = [2, 4, 2, 3, 3, 3]  # Scenario 1..6 marker counts
 
     for i in range(1, 7):
         res = await provider.generate_result("tb", scenario=i)
@@ -393,6 +393,7 @@ async def test_all_six_educational_scenarios():
         assert res.scenario_id == f"scenario_{i}"
         assert res.scenario_name is not None
         assert len(res.findings) == expected_counts[i - 1], f"Scenario {i} expected {expected_counts[i-1]} findings"
+        assert len(res.observations) > 0, f"Scenario {i} should provide coherent anatomical observations"
 
         # Verify findings attributes
         for finding in res.findings:
@@ -407,16 +408,17 @@ def test_api_scenario_selection_query_param():
     """Verify POST /api/v1/analyze respects the scenario form parameter."""
     img_bytes = create_in_memory_image(format="JPEG", width=256, height=256)
 
-    # Request Scenario 6 (Baseline, 0 markers)
-    res_empty = client.post(
+    # Request Scenario 6 (Upper-Lobe Cavitary, 3 markers)
+    res_scen6 = client.post(
         "/api/v1/analyze",
         data={"workflow": "tb", "scenario": 6},
         files={"file": ("cxr.jpg", img_bytes, "image/jpeg")},
     )
-    assert res_empty.status_code == 200
-    data_empty = res_empty.json()
-    assert data_empty["scenario_id"] == "scenario_6"
-    assert len(data_empty["findings"]) == 0
+    assert res_scen6.status_code == 200
+    data_scen6 = res_scen6.json()
+    assert data_scen6["scenario_id"] == "scenario_6"
+    assert len(data_scen6["findings"]) == 3
+    assert len(data_scen6["observations"]) == 3
 
     # Request Scenario 2 (Quad-Zone, 4 markers)
     res_quad = client.post(

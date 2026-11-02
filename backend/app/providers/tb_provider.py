@@ -6,6 +6,7 @@ from app.schemas import (
     FindingCoordinates,
     FindingItem,
     ImageValidationResponse,
+    ObservationItem,
     ScreeningResultResponse,
     SIMULATION_DISCLAIMER,
     ValidationException,
@@ -18,7 +19,7 @@ from app.schemas import (
 # - No normal / abnormal / safe / low-risk / high-risk categorization.
 # - Color roles:
 #   * reference (Green): Educational anatomical reference region
-#   * inspection (Blue): Additional inspection reference region
+#   * inspection (Orange/Blue): Additional inspection reference region
 #   * highlighted (Red): Highlighted demonstration region
 # ---------------------------------------------------------------------------
 
@@ -52,6 +53,11 @@ TB_EDUCATIONAL_SCENARIOS: List[Dict[str, Any]] = [
                 category="reference",  # Green
             ),
         ],
+        "observations": [
+            {"label": "Thoracic Symmetry", "value": "Symmetric lung expansion and thoracic cage contour."},
+            {"label": "Pleural Recesses", "value": "Left costophrenic sulcus clear; no reactive blunting."},
+            {"label": "Cardiomediastinal Contour", "value": "Trachea midline; cardiac silhouette within normal ratio."},
+        ],
     },
     {
         "id": "scenario_2",
@@ -79,7 +85,7 @@ TB_EDUCATIONAL_SCENARIOS: List[Dict[str, Any]] = [
                 ),
                 coordinates=FindingCoordinates(x_min=0.60, y_min=0.44, x_max=0.84, y_max=0.64),
                 is_educational_reference=True,
-                category="inspection",  # Blue
+                category="inspection",  # Orange/Blue
             ),
             FindingItem(
                 id="TB-SIM-203",
@@ -103,6 +109,11 @@ TB_EDUCATIONAL_SCENARIOS: List[Dict[str, Any]] = [
                 category="reference",  # Green
             ),
         ],
+        "observations": [
+            {"label": "Parenchymal Symmetry", "value": "Contralateral left lung parenchyma demonstrates preserved vascular branching."},
+            {"label": "Diaphragmatic Contour", "value": "Smooth hemidiaphragms with sharp lateral costophrenic angles."},
+            {"label": "Tracheobronchial Axis", "value": "Midline tracheal orientation without lateral deviation."},
+        ],
     },
     {
         "id": "scenario_3",
@@ -119,7 +130,7 @@ TB_EDUCATIONAL_SCENARIOS: List[Dict[str, Any]] = [
                 ),
                 coordinates=FindingCoordinates(x_min=0.42, y_min=0.16, x_max=0.58, y_max=0.38),
                 is_educational_reference=True,
-                category="inspection",  # Blue
+                category="inspection",  # Orange/Blue
             ),
             FindingItem(
                 id="TB-SIM-302",
@@ -133,6 +144,11 @@ TB_EDUCATIONAL_SCENARIOS: List[Dict[str, Any]] = [
                 is_educational_reference=True,
                 category="reference",  # Green
             ),
+        ],
+        "observations": [
+            {"label": "Mediastinum", "value": "Normal superior mediastinal width; tracheal air column central."},
+            {"label": "Hilar Angles", "value": "Right hilum visible without gross lymph node enlargement."},
+            {"label": "Costophrenic Angles", "value": "Both costophrenic sulci well visualized without fluid levels."},
         ],
     },
     {
@@ -172,8 +188,13 @@ TB_EDUCATIONAL_SCENARIOS: List[Dict[str, Any]] = [
                 ),
                 coordinates=FindingCoordinates(x_min=0.18, y_min=0.76, x_max=0.35, y_max=0.90),
                 is_educational_reference=True,
-                category="inspection",  # Blue
+                category="inspection",  # Orange/Blue
             ),
+        ],
+        "observations": [
+            {"label": "Lower Lung Zones", "value": "Retrocardiac density noted in lower zone; right basal aeration preserved."},
+            {"label": "Pleural Space", "value": "Right costophrenic angle clear; left costophrenic recess sharp."},
+            {"label": "Subdiaphragmatic Contour", "value": "Intact diaphragmatic profile with normal gastric air bubble."},
         ],
     },
     {
@@ -213,15 +234,61 @@ TB_EDUCATIONAL_SCENARIOS: List[Dict[str, Any]] = [
                 ),
                 coordinates=FindingCoordinates(x_min=0.72, y_min=0.36, x_max=0.88, y_max=0.56),
                 is_educational_reference=True,
-                category="inspection",  # Blue
+                category="inspection",  # Orange/Blue
             ),
+        ],
+        "observations": [
+            {"label": "Apical Zones", "value": "Left apex clear; right infraclavicular parenchymal opacity noted."},
+            {"label": "Pleural Boundaries", "value": "Peripheral visceral pleural line normal without pneumothorax."},
+            {"label": "Thoracic Skeleton", "value": "Visualized clavicles and ribs intact without focal osteolytic lesions."},
         ],
     },
     {
         "id": "scenario_6",
-        "name": "Baseline Demonstration View (Unannotated)",
-        "description": "Clean baseline view displaying an unannotated radiograph for visual comparison.",
-        "findings": [],  # Empty overlay state
+        "name": "Upper-Lobe Cavitary & Apical Opacity Demonstration",
+        "description": "Demonstration layout featuring right apical parenchymal opacity with suspected cavitary lucency.",
+        "findings": [
+            FindingItem(
+                id="TB-SIM-601",
+                title="Apical Infiltration & Cavitary Lucency",
+                description=(
+                    "Focal parenchymal consolidation in the right upper pulmonary apex with an internal radiolucent "
+                    "area, suggestive of post-primary cavitary morphology. Educational Reference: Cavitary changes are "
+                    "characteristic of secondary tuberculosis with high infectiousness. Clinical Solution: Immediate sputum "
+                    "GeneXpert MTB/RIF assay, AFB smear microscopy, and respiratory isolation precautions."
+                ),
+                coordinates=FindingCoordinates(x_min=0.56, y_min=0.14, x_max=0.78, y_max=0.34),
+                is_educational_reference=True,
+                category="highlighted",  # Red
+            ),
+            FindingItem(
+                id="TB-SIM-602",
+                title="Pericavitary Satellite Densities",
+                description=(
+                    "Subtle patchy nodular attenuation surrounding the right apical consolidation margin, illustrative "
+                    "of early bronchogenic dissemination pattern in active pulmonary TB demonstration."
+                ),
+                coordinates=FindingCoordinates(x_min=0.52, y_min=0.34, x_max=0.68, y_max=0.46),
+                is_educational_reference=True,
+                category="inspection",  # Orange/Blue
+            ),
+            FindingItem(
+                id="TB-SIM-603",
+                title="Contralateral Base & Costophrenic Angle",
+                description=(
+                    "Clear left mid and lower lung zones; acute costophrenic angle confirming absent reactive pleural "
+                    "effusion in the dependent pleural recess."
+                ),
+                coordinates=FindingCoordinates(x_min=0.16, y_min=0.68, x_max=0.36, y_max=0.84),
+                is_educational_reference=True,
+                category="reference",  # Green
+            ),
+        ],
+        "observations": [
+            {"label": "Apical Parenchyma", "value": "Right apical opacity with internal lucency; left apex aerated."},
+            {"label": "Pleural Recesses", "value": "Bilateral costophrenic angles sharp without fluid accumulation."},
+            {"label": "Cardiothoracic Ratio", "value": "Cardiac silhouette and mediastinum within expected physiological limits."},
+        ],
     },
 ]
 
@@ -271,13 +338,19 @@ class TBSimulationProvider(BaseResultsProvider):
                 technical_metadata.width * 31
                 + technical_metadata.height * 17
                 + technical_metadata.file_size_bytes
-            ) % 6
+            ) % len(TB_EDUCATIONAL_SCENARIOS)
         else:
             scenario_idx = 0
 
         selected_scenario = TB_EDUCATIONAL_SCENARIOS[scenario_idx]
         instance_id = f"tb_sim_{uuid.uuid4().hex[:12]}"
         now_utc = datetime.now(timezone.utc).isoformat()
+
+        raw_observations = selected_scenario.get("observations", [])
+        observation_items = [
+            ObservationItem(label=obs["label"], value=obs["value"])
+            for obs in raw_observations
+        ]
 
         return ScreeningResultResponse(
             result_id=instance_id,
@@ -290,5 +363,6 @@ class TBSimulationProvider(BaseResultsProvider):
             scenario_id=selected_scenario["id"],
             scenario_name=selected_scenario["name"],
             findings=[item.model_copy() for item in selected_scenario["findings"]],
+            observations=observation_items,
             generated_at=now_utc,
         )

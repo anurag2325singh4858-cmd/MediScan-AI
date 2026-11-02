@@ -67,6 +67,7 @@ export const TBResultsPage: React.FC<TBResultsPageProps> = ({
   const [selectedFindingId, setSelectedFindingId] = useState<string | null>(null);
   const [pdfNotification, setPdfNotification] = useState<string | null>(null);
   const [isGuidanceOpen, setIsGuidanceOpen] = useState<boolean>(false);
+  const [imageAspect, setImageAspect] = useState<string>('1 / 1');
 
   // Concurrency and race condition guards
   const activeRequestIdRef = useRef<number>(0);
@@ -245,7 +246,10 @@ export const TBResultsPage: React.FC<TBResultsPageProps> = ({
             <div className="tb-results-loading-card" role="status" aria-live="polite">
               <div className="tb-results-loading-spinner" />
               <p className="tb-results-loading-text">
-                Processing chest radiograph through educational simulation pipeline...
+                Analyzing Image...
+              </p>
+              <p className="tb-results-loading-subtext">
+                Preparing Screening Results...
               </p>
             </div>
           )}
@@ -269,13 +273,19 @@ export const TBResultsPage: React.FC<TBResultsPageProps> = ({
                       <span className="tb-results-img-card-title">Original Image</span>
                     </div>
 
-                    <div className="tb-results-img-viewport" data-coordinate-space="normalized">
+                    <div className="tb-results-img-viewport" data-coordinate-space="normalized" style={{ aspectRatio: imageAspect }}>
                       <span className="tb-results-anatomical-marker" aria-hidden="true">R</span>
                       {imageObjectUrl && (
                         <img
                           src={imageObjectUrl}
                           alt="Original Chest X-ray Radiograph"
                           className="tb-results-img"
+                          onLoad={(e) => {
+                            const { naturalWidth, naturalHeight } = e.currentTarget;
+                            if (naturalWidth && naturalHeight) {
+                              setImageAspect(`${naturalWidth} / ${naturalHeight}`);
+                            }
+                          }}
                         />
                       )}
                     </div>
@@ -290,13 +300,19 @@ export const TBResultsPage: React.FC<TBResultsPageProps> = ({
                       <span className="tb-results-img-card-title">Annotated Image</span>
                     </div>
 
-                    <div className="tb-results-img-viewport" data-coordinate-space="normalized">
+                    <div className="tb-results-img-viewport" data-coordinate-space="normalized" style={{ aspectRatio: imageAspect }}>
                       <span className="tb-results-anatomical-marker" aria-hidden="true">R</span>
                       {imageObjectUrl && (
                         <img
                           src={imageObjectUrl}
                           alt="Annotated Chest X-ray Radiograph Demonstration"
                           className="tb-results-img"
+                          onLoad={(e) => {
+                            const { naturalWidth, naturalHeight } = e.currentTarget;
+                            if (naturalWidth && naturalHeight) {
+                              setImageAspect(`${naturalWidth} / ${naturalHeight}`);
+                            }
+                          }}
                         />
                       )}
 
@@ -549,41 +565,46 @@ export const TBResultsPage: React.FC<TBResultsPageProps> = ({
                   </div>
 
                   <div className="tb-results-obs-list">
-                    <div className="tb-results-obs-row">
-                      <div className="tb-results-obs-label-group">
-                        <span className="tb-results-obs-icon tb-results-obs-icon--heart" aria-hidden="true">
-                          <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                          </svg>
-                        </span>
-                        <span className="tb-results-obs-name">Heart Size</span>
-                      </div>
-                      <span className="tb-results-obs-val">Appears normal.</span>
-                    </div>
-
-                    <div className="tb-results-obs-row">
-                      <div className="tb-results-obs-label-group">
-                        <span className="tb-results-obs-icon tb-results-obs-icon--lung" aria-hidden="true">
-                          <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
-                          </svg>
-                        </span>
-                        <span className="tb-results-obs-name">Pleural Space</span>
-                      </div>
-                      <span className="tb-results-obs-val">No significant effusion detected.</span>
-                    </div>
-
-                    <div className="tb-results-obs-row">
-                      <div className="tb-results-obs-label-group">
-                        <span className="tb-results-obs-icon tb-results-obs-icon--bone" aria-hidden="true">
-                          <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M18.8 5.2a3.5 3.5 0 0 0-4.9 0l-.9.9-.9-.9a3.5 3.5 0 0 0-4.9 4.9l.9.9-4.8 4.8a3.5 3.5 0 0 0 4.9 4.9l4.8-4.8.9.9a3.5 3.5 0 0 0 4.9-4.9l-.9-.9.9-.9a3.5 3.5 0 0 0 0-4.9z"/>
-                          </svg>
-                        </span>
-                        <span className="tb-results-obs-name">Bone Structure</span>
-                      </div>
-                      <span className="tb-results-obs-val">Ribs and clavicle appear normal.</span>
-                    </div>
+                    {(result?.observations && result.observations.length > 0) ? (
+                      result.observations.map((obs, oIdx) => (
+                        <div key={oIdx} className="tb-results-obs-row">
+                          <div className="tb-results-obs-label-group">
+                            <span className="tb-results-obs-icon tb-results-obs-icon--lung" aria-hidden="true">
+                              <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+                              </svg>
+                            </span>
+                            <span className="tb-results-obs-name">{obs.label}</span>
+                          </div>
+                          <span className="tb-results-obs-val">{obs.value}</span>
+                        </div>
+                      ))
+                    ) : (
+                      <>
+                        <div className="tb-results-obs-row">
+                          <div className="tb-results-obs-label-group">
+                            <span className="tb-results-obs-icon tb-results-obs-icon--lung" aria-hidden="true">
+                              <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+                              </svg>
+                            </span>
+                            <span className="tb-results-obs-name">Thoracic Anatomy</span>
+                          </div>
+                          <span className="tb-results-obs-val">Symmetric lung expansion and thoracic cage contour.</span>
+                        </div>
+                        <div className="tb-results-obs-row">
+                          <div className="tb-results-obs-label-group">
+                            <span className="tb-results-obs-icon tb-results-obs-icon--heart" aria-hidden="true">
+                              <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                              </svg>
+                            </span>
+                            <span className="tb-results-obs-name">Pleural Recesses</span>
+                          </div>
+                          <span className="tb-results-obs-val">Evaluated for reactive blunting or fluid accumulation.</span>
+                        </div>
+                      </>
+                    )}
                   </div>
                 </div>
 

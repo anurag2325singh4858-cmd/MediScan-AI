@@ -35,8 +35,8 @@ const PROCESSING_STEPS: ProcessingStep[] = [
   },
   {
     id: 'preparing_demo',
-    label: 'Preparing demonstration',
-    detail: 'Staging simulated screening workflow for demonstration',
+    label: 'Preparing screening results',
+    detail: 'Generating structured screening findings and anatomical annotations',
   },
 ];
 
@@ -86,25 +86,22 @@ export const TBProcessingPage: React.FC<TBProcessingPageProps> = ({
       return;
     }
 
-    // Step 0 -> Step 1 (File validation) after 1.2s
+    // Responsive stepped processing timeline (1.5s total duration)
     const timer1 = setTimeout(() => {
       setActiveStepIndex(1);
       setProgressPercent(40);
-    }, 1200);
+    }, 350);
 
-    // Step 1 -> Step 2 (Technical image checks) after 2.8s
     const timer2 = setTimeout(() => {
       setActiveStepIndex(2);
       setProgressPercent(75);
-    }, 2800);
+    }, 750);
 
-    // Step 2 -> Step 3 (Preparing demonstration) after 4.4s
     const timer3 = setTimeout(() => {
       setActiveStepIndex(3);
       setProgressPercent(90);
-    }, 4400);
+    }, 1150);
 
-    // Complete all steps after 5.6s
     const timer4 = setTimeout(() => {
       setActiveStepIndex(PROCESSING_STEPS.length);
       setProgressPercent(100);
@@ -112,7 +109,7 @@ export const TBProcessingPage: React.FC<TBProcessingPageProps> = ({
       if (onProcessingComplete) {
         onProcessingComplete();
       }
-    }, 5600);
+    }, 1500);
 
     return () => {
       clearTimeout(timer1);

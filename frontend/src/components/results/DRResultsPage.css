@@ -189,9 +189,16 @@
 
 .dr-results-loading-text {
   margin: 0;
-  font-size: 0.92rem;
-  color: #475569;
-  font-weight: 600;
+  font-size: 0.95rem;
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.dr-results-loading-subtext {
+  margin: 4px 0 0 0;
+  font-size: 0.82rem;
+  color: #64748b;
+  font-weight: 500;
 }
 
 /* 2. Main Two-Column Content Grid */

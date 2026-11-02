@@ -240,7 +240,10 @@ export const DRResultsPage: React.FC<DRResultsPageProps> = ({
             <div className="dr-results-loading-card" role="status" aria-live="polite">
               <div className="dr-results-loading-spinner" />
               <p className="dr-results-loading-text">
-                Analyzing retinal fundus photograph through educational simulation pipeline...
+                Analyzing Image...
+              </p>
+              <p className="dr-results-loading-subtext">
+                Preparing Screening Results...
               </p>
             </div>
           )}
@@ -568,42 +571,59 @@ export const DRResultsPage: React.FC<DRResultsPageProps> = ({
                   </div>
 
                   <div className="dr-results-obs-list">
-                    <div className="dr-results-obs-row">
-                      <div className="dr-results-obs-label-group">
-                        <span className="dr-results-obs-icon dr-results-obs-icon--disc" aria-hidden="true">
-                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <circle cx="12" cy="12" r="9" />
-                            <circle cx="12" cy="12" r="3" fill="currentColor" />
-                          </svg>
-                        </span>
-                        <span className="dr-results-obs-name">Cup-to-Disc Ratio</span>
-                      </div>
-                      <span className="dr-results-obs-val">Appears normal.</span>
-                    </div>
-
-                    <div className="dr-results-obs-row">
-                      <div className="dr-results-obs-label-group">
-                        <span className="dr-results-obs-icon dr-results-obs-icon--clarity" aria-hidden="true">
-                          <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" />
-                          </svg>
-                        </span>
-                        <span className="dr-results-obs-name">Vitreous Clarity</span>
-                      </div>
-                      <span className="dr-results-obs-val">No significant opacity detected.</span>
-                    </div>
-
-                    <div className="dr-results-obs-row">
-                      <div className="dr-results-obs-label-group">
-                        <span className="dr-results-obs-icon dr-results-obs-icon--vessel" aria-hidden="true">
-                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <path d="M6 3v6a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V3M12 12v9" strokeLinecap="round" strokeLinejoin="round" />
-                          </svg>
-                        </span>
-                        <span className="dr-results-obs-name">Vascular Caliber</span>
-                      </div>
-                      <span className="dr-results-obs-val">Vessels appear normal.</span>
-                    </div>
+                    {(result?.observations && result.observations.length > 0) ? (
+                      result.observations.map((obs, oIdx) => (
+                        <div key={oIdx} className="dr-results-obs-row">
+                          <div className="dr-results-obs-label-group">
+                            <span className="dr-results-obs-icon dr-results-obs-icon--disc" aria-hidden="true">
+                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <circle cx="12" cy="12" r="9" />
+                                <circle cx="12" cy="12" r="3" fill="currentColor" />
+                              </svg>
+                            </span>
+                            <span className="dr-results-obs-name">{obs.label}</span>
+                          </div>
+                          <span className="dr-results-obs-val">{obs.value}</span>
+                        </div>
+                      ))
+                    ) : (
+                      <>
+                        <div className="dr-results-obs-row">
+                          <div className="dr-results-obs-label-group">
+                            <span className="dr-results-obs-icon dr-results-obs-icon--disc" aria-hidden="true">
+                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <circle cx="12" cy="12" r="9" />
+                                <circle cx="12" cy="12" r="3" fill="currentColor" />
+                              </svg>
+                            </span>
+                            <span className="dr-results-obs-name">Cup-to-Disc Ratio</span>
+                          </div>
+                          <span className="dr-results-obs-val">Appears normal with physiological contour.</span>
+                        </div>
+                        <div className="dr-results-obs-row">
+                          <div className="dr-results-obs-label-group">
+                            <span className="dr-results-obs-icon dr-results-obs-icon--clarity" aria-hidden="true">
+                              <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" />
+                              </svg>
+                            </span>
+                            <span className="dr-results-obs-name">Vitreous Clarity</span>
+                          </div>
+                          <span className="dr-results-obs-val">No significant opacity detected.</span>
+                        </div>
+                        <div className="dr-results-obs-row">
+                          <div className="dr-results-obs-label-group">
+                            <span className="dr-results-obs-icon dr-results-obs-icon--vessel" aria-hidden="true">
+                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <path d="M6 3v6a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V3M12 12v9" strokeLinecap="round" strokeLinejoin="round" />
+                              </svg>
+                            </span>
+                            <span className="dr-results-obs-name">Vascular Caliber</span>
+                          </div>
+                          <span className="dr-results-obs-val">Major retinal arteriolar and venular branching patterns visualized.</span>
+                        </div>
+                      </>
+                    )}
                   </div>
                 </div>
 

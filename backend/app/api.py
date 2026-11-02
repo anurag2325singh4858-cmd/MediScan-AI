@@ -1,9 +1,12 @@
+import logging
+import time
 from typing import Optional
 from fastapi import APIRouter, File, Form, Request, UploadFile, status
 from app.schemas import ImageValidationResponse, ScreeningResultResponse, ErrorResponse
 from app.validator import validate_medical_image
 from app.providers import get_results_provider
 
+logger = logging.getLogger("mediscan.api")
 router = APIRouter(tags=["Screening & Validation"])
 
 
@@ -70,18 +73,28 @@ async def analyze_image_v1(
     Performs full pipeline: safe image decoding and technical inspection (Module 8 & 9),
     followed by dispatch to the appropriate workflow results provider (Module 10).
     """
+    t_start = time.perf_counter()
     # 1. Technical validation & full raster pixel integrity check
     tech_metadata = await validate_medical_image(workflow=workflow, file=file, request=request)
+    t_val = time.perf_counter()
 
     # 2. Select appropriate workflow results provider
     provider = get_results_provider(tech_metadata.workflow)
 
     # 3. Generate structured results
-    return await provider.generate_result(
+    result = await provider.generate_result(
         workflow=tech_metadata.workflow,
         technical_metadata=tech_metadata,
         scenario=scenario,
     )
+    t_end = time.perf_counter()
+    logger.info(
+        f"[TIMING] Workflow={tech_metadata.workflow} | "
+        f"Validation={((t_val - t_start) * 1000):.2f}ms | "
+        f"ResultGeneration={((t_end - t_val) * 1000):.2f}ms | "
+        f"TotalServerTime={((t_end - t_start) * 1000):.2f}ms"
+    )
+    return result
 
 
 # Provide alias route at /api/analyze

@@ -83,7 +83,7 @@ console.log('✓ Stale results cleared on error/transitions and object URLs revo
 // 4. Verify Live API: All Six Educational Scenarios
 console.log('\n[4/7] Verifying Live Backend Generation of All Six Educational Scenarios...');
 const sampleCxr = fs.readFileSync('frontend/public/assets/example-chest-xray.png');
-const expectedCounts = [2, 4, 2, 3, 3, 0];
+const expectedCounts = [2, 4, 2, 3, 3, 3];
 
 for (let s = 1; s <= 6; s++) {
   const blob = new Blob([sampleCxr], { type: 'image/png' });

@@ -86,6 +86,14 @@ SIMULATION_DISCLAIMER: str = (
 )
 
 
+class ObservationItem(BaseModel):
+    """
+    Structured anatomical observation item aligned with clinical screening conventions.
+    """
+    label: str = Field(description="Anatomical landmark or observation domain")
+    value: str = Field(description="Descriptive observation detail")
+
+
 class ScreeningResultResponse(BaseModel):
     """
     Unified result response contract for screening workflows.
@@ -128,6 +136,10 @@ class ScreeningResultResponse(BaseModel):
     findings: List[FindingItem] = Field(
         default_factory=list,
         description="Structured list of illustrative demonstration findings",
+    )
+    observations: List[ObservationItem] = Field(
+        default_factory=list,
+        description="Structured anatomical observations aligned with the selected scenario",
     )
     generated_at: str = Field(
         description="ISO 8601 UTC timestamp of result generation",

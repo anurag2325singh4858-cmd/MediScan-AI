@@ -6,6 +6,7 @@ from app.schemas import (
     FindingCoordinates,
     FindingItem,
     ImageValidationResponse,
+    ObservationItem,
     ScreeningResultResponse,
     SIMULATION_DISCLAIMER,
     ValidationException,
@@ -117,6 +118,12 @@ class DRSimulationProvider(BaseResultsProvider):
         instance_id = f"dr_sim_{uuid.uuid4().hex[:12]}"
         now_utc = datetime.now(timezone.utc).isoformat()
 
+        dr_observations = [
+            ObservationItem(label="Optic Disc", value="Sharp disc margins with physiological neuroretinal rim contour."),
+            ObservationItem(label="Macular Field", value="Foveal avascular zone centered without gross exudative distortion."),
+            ObservationItem(label="Vascular Arcade", value="Major retinal arteriolar and venular branching patterns visualized."),
+        ]
+
         return ScreeningResultResponse(
             result_id=instance_id,
             workflow="dr",
@@ -126,5 +133,6 @@ class DRSimulationProvider(BaseResultsProvider):
             disclaimer=SIMULATION_DISCLAIMER,
             technical_summary=technical_metadata,
             findings=[item.model_copy() for item in DR_DEMONSTRATION_FINDINGS],
+            observations=dr_observations,
             generated_at=now_utc,
         )
