@@ -55,6 +55,9 @@
 
 .tb-upload-container {
   max-width: 1024px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 clamp(12px, 3.5vw, 24px);
 }
 
 /* ==========================================================================
@@ -630,26 +633,41 @@
 
 @media (max-width: 860px) {
   .tb-upload-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 1.5rem;
   }
 
   .tb-upload-bg-decor {
-    width: 160px;
-    opacity: 0.05;
+    display: none;
   }
 }
 
 @media (max-width: 480px) {
+  .tb-upload-content {
+    padding: 1.5rem 0 3rem;
+  }
+
+  .tb-upload-title {
+    font-size: clamp(1.4rem, 5.5vw, 1.85rem);
+  }
+
   .tb-upload-actions-bar {
     flex-direction: column-reverse;
     width: 100%;
+    gap: 10px;
   }
 
   .tb-upload-back-btn,
   .tb-upload-continue-btn {
     width: 100%;
     justify-content: center;
+    min-height: 44px;
+    padding: 12px 18px;
+    box-sizing: border-box;
+  }
+
+  .tb-upload-dropzone {
+    padding: 1.5rem 1rem;
   }
 }
 

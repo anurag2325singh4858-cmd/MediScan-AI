@@ -55,6 +55,9 @@
 
 .tb-proc-container {
   max-width: 1024px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 clamp(12px, 3.5vw, 24px);
 }
 
 /* ==========================================================================
@@ -654,9 +657,10 @@
 
 @media (max-width: 900px) {
   .tb-proc-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 2rem;
     max-width: 500px;
+    width: 100%;
   }
 
   .tb-proc-card--timeline {
@@ -670,11 +674,19 @@
   }
 
   .tb-proc-title {
-    font-size: 1.85rem;
+    font-size: clamp(1.4rem, 5.5vw, 1.85rem);
   }
 
   .tb-proc-bg-decor {
     display: none;
+  }
+
+  .tb-proc-back-btn {
+    min-height: 44px;
+    padding: 12px 18px;
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
   }
 }
 

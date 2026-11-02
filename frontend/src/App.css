@@ -338,10 +338,12 @@
 
 @media (max-width: 640px) {
   .landing-floating-cta {
-    bottom: 20px;
-    right: 20px;
-    padding: 12px 22px;
-    font-size: 0.92rem;
+    bottom: 16px;
+    right: 16px;
+    padding: 10px 18px;
+    font-size: 0.88rem;
+    min-height: 44px;
+    box-sizing: border-box;
   }
 }
 

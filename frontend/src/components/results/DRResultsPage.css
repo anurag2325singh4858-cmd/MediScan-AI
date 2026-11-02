@@ -49,10 +49,12 @@
 .dr-results-container {
   max-width: 1260px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 clamp(12px, 3vw, 24px);
   display: flex;
   flex-direction: column;
   gap: 20px;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 /* 1. Header Title & Workflow Capsule Block */
@@ -63,14 +65,16 @@
   text-align: center;
   gap: 10px;
   margin-bottom: 4px;
+  width: 100%;
 }
 
 .dr-results-title {
   margin: 0;
-  font-size: 2.25rem;
+  font-size: clamp(1.4rem, 4.5vw, 2.25rem);
   font-weight: 800;
   color: #0f172a;
   letter-spacing: -0.025em;
+  line-height: 1.2;
 }
 
 .dr-results-header-badges {
@@ -207,6 +211,7 @@
   grid-template-columns: minmax(0, 1.42fr) minmax(0, 1fr);
   gap: 24px;
   align-items: start;
+  width: 100%;
 }
 
 /* Left Column: Images, Tabs & Guidance Card */
@@ -214,12 +219,16 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  min-width: 0;
+  width: 100%;
 }
 
 .dr-results-images-pair {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 16px;
+  min-width: 0;
+  width: 100%;
 }
 
 /* Image Card */
@@ -231,6 +240,9 @@
   box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
   position: relative;
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .dr-results-img-card--active {
@@ -554,6 +566,8 @@
   display: flex;
   flex-direction: column;
   gap: 18px;
+  min-width: 0;
+  width: 100%;
 }
 
 /* Card General Styling */
@@ -563,6 +577,9 @@
   border-radius: 14px;
   overflow: hidden;
   box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .dr-results-card-header {
@@ -871,11 +888,118 @@
 /* Responsive Breakpoints */
 @media (max-width: 992px) {
   .dr-results-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .dr-results-images-pair {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .dr-results-bg-decor {
+    display: none;
+  }
+
+  .dr-results-main {
+    padding: 16px 0 40px 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .dr-results-actions-bar {
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .dr-results-btn-group {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .dr-results-btn {
+    width: 100%;
+    justify-content: center;
+    min-height: 44px;
+    padding: 12px 18px;
+    box-sizing: border-box;
+  }
+
+  .dr-results-img-card {
+    padding: 10px;
+    border-radius: 14px;
+  }
+}
+
+@media (max-width: 540px) {
+  .dr-results-obs-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 8px 0;
+  }
+
+  .dr-results-obs-val {
+    text-align: left;
+    width: 100%;
+    padding-left: 30px;
+    box-sizing: border-box;
+  }
+
+  .dr-results-tabs-row {
+    gap: 8px;
+    width: 100%;
+  }
+
+  .dr-results-tab-btn {
+    flex: 1;
+    min-width: 0;
+    gap: 8px;
+    padding: 8px 10px;
+    min-height: 44px;
+    box-sizing: border-box;
+  }
+
+  .dr-results-tab-thumb {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+  }
+
+  .dr-results-tab-label {
+    font-size: 0.78rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .dr-finding-item {
+    padding: 10px 12px;
+    gap: 10px;
+  }
+
+  .dr-finding-thumb {
+    width: 44px;
+    height: 42px;
+    min-width: 44px;
+  }
+}
+
+@media (max-width: 360px) {
+  .dr-results-container {
+    padding: 0 8px;
+    gap: 14px;
+  }
+
+  .dr-results-header-badges {
+    gap: 8px;
+  }
+
+  .dr-results-capsule {
+    padding: 5px 12px;
+    font-size: 0.8rem;
   }
 }
 

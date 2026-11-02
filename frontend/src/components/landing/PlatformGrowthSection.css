@@ -171,6 +171,11 @@
 }
 
 @media (max-width: 600px) {
+  .growth-card {
+    padding: 1.5rem 1rem;
+    border-radius: 20px;
+  }
+
   .growth-card__divider {
     display: none;
   }
@@ -178,10 +183,11 @@
   .growth-card__group {
     flex-wrap: wrap;
     justify-content: center;
+    gap: 0.5rem;
   }
 
   .growth-modality-badge {
-    min-width: 74px;
-    padding: 8px 10px;
+    min-width: 70px;
+    padding: 8px 8px;
   }
 }

@@ -67,6 +67,7 @@ export const DRResultsPage: React.FC<DRResultsPageProps> = ({
   const [selectedFindingId, setSelectedFindingId] = useState<string | null>(null);
   const [pdfNotification, setPdfNotification] = useState<string | null>(null);
   const [isGuidanceOpen, setIsGuidanceOpen] = useState<boolean>(false);
+  const [imageAspect, setImageAspect] = useState<string>('1 / 1');
 
   // Concurrency and race condition guards
   const activeRequestIdRef = useRef<number>(0);
@@ -267,13 +268,19 @@ export const DRResultsPage: React.FC<DRResultsPageProps> = ({
                       <span className="dr-results-img-card-title">Original Image</span>
                     </div>
 
-                    <div className="dr-results-img-viewport" data-coordinate-space="normalized">
+                    <div className="dr-results-img-viewport" data-coordinate-space="normalized" style={{ aspectRatio: imageAspect }}>
                       <span className="dr-results-anatomical-marker" aria-hidden="true">Fundus (45°)</span>
                       {imageObjectUrl && (
                         <img
                           src={imageObjectUrl}
                           alt="Original Retinal Fundus Photograph"
                           className="dr-results-img"
+                          onLoad={(e) => {
+                            const { naturalWidth, naturalHeight } = e.currentTarget;
+                            if (naturalWidth && naturalHeight) {
+                              setImageAspect(`${naturalWidth} / ${naturalHeight}`);
+                            }
+                          }}
                         />
                       )}
                     </div>
@@ -288,13 +295,19 @@ export const DRResultsPage: React.FC<DRResultsPageProps> = ({
                       <span className="dr-results-img-card-title">Annotated Image</span>
                     </div>
 
-                    <div className="dr-results-img-viewport" data-coordinate-space="normalized">
+                    <div className="dr-results-img-viewport" data-coordinate-space="normalized" style={{ aspectRatio: imageAspect }}>
                       <span className="dr-results-anatomical-marker" aria-hidden="true">Fundus (45°)</span>
                       {imageObjectUrl && (
                         <img
                           src={imageObjectUrl}
                           alt="Annotated Retinal Fundus Photograph"
                           className="dr-results-img"
+                          onLoad={(e) => {
+                            const { naturalWidth, naturalHeight } = e.currentTarget;
+                            if (naturalWidth && naturalHeight) {
+                              setImageAspect(`${naturalWidth} / ${naturalHeight}`);
+                            }
+                          }}
                         />
                       )}
 

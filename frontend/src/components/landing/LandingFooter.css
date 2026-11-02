@@ -163,6 +163,9 @@
 
 /* Responsive */
 @media (max-width: 860px) {
+  .landing-footer__container {
+    padding-right: 1rem;
+  }
   .landing-footer__divider {
     display: none;
   }
@@ -170,5 +173,11 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 1.5rem;
+  }
+  .landing-footer__link,
+  .landing-footer__wf-link {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
   }
 }

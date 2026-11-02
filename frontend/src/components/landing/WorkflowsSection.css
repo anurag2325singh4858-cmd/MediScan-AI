@@ -197,8 +197,20 @@
   .workflow-card {
     flex-direction: column;
     text-align: center;
+    padding: 1.5rem 1rem;
+    border-radius: 20px;
   }
   .workflow-pipeline {
     justify-content: center;
+    gap: 0.35rem;
+    width: 100%;
+  }
+  .workflow-pipeline__step {
+    width: 64px;
+  }
+  .workflow-pipeline__thumb,
+  .workflow-pipeline__icon-box {
+    width: 38px;
+    height: 38px;
   }
 }

@@ -272,10 +272,30 @@
 }
 
 @media (max-width: 500px) {
-  .what-is-connector {
-    width: 30px;
+  .what-is-card {
+    padding: 1.5rem 1rem;
+    border-radius: 20px;
   }
+
+  .what-is-card__title {
+    font-size: clamp(1.65rem, 6vw, 2.1rem);
+  }
+
+  .what-is-card__visual {
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .what-is-connector {
+    width: 18px;
+  }
+
   .what-is-workstation {
-    width: 140px;
+    width: 115px;
+  }
+
+  .what-is-node__icon-wrap {
+    width: 36px;
+    height: 36px;
   }
 }

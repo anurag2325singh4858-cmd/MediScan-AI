@@ -134,3 +134,10 @@
     align-self: center;
   }
 }
+
+@media (max-width: 600px) {
+  .how-it-works-flow-card {
+    padding: 1.5rem 1rem;
+    border-radius: 20px;
+  }
+}

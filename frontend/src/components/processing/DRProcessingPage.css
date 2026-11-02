@@ -55,6 +55,9 @@
 
 .dr-proc-container {
   max-width: 1024px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 clamp(12px, 3.5vw, 24px);
 }
 
 /* ==========================================================================
@@ -638,9 +641,10 @@
 
 @media (max-width: 900px) {
   .dr-proc-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 2rem;
     max-width: 500px;
+    width: 100%;
   }
 
   .dr-proc-card--timeline {
@@ -654,11 +658,19 @@
   }
 
   .dr-proc-title {
-    font-size: 1.85rem;
+    font-size: clamp(1.4rem, 5.5vw, 1.85rem);
   }
 
   .dr-proc-bg-decor {
     display: none;
+  }
+
+  .dr-proc-back-btn {
+    min-height: 44px;
+    padding: 12px 18px;
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
   }
 }
 
